@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta name="viewport"content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            background-color: rgb(255, 255, 255);
+            font-family: 'Roboto-Light.ttf', sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 120vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: rgba(59, 58, 58, 0.3);
+            padding: 0px 25px;
+            position: fixed;
+            float: right;
+            top: 0;
+            width: 100%;
+            z-index: 3;
+            flex-grow: 0;
+            color: white;
+            display: flex;
+            height: 9%;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: center; /* Wyśrodkuj elementy */
+            text-align: center;
+            width: 100%; /* Ustaw szerokość na 100% */
+            
+
+        }
+
+        .top-nav a {
+            color: white;
+            text-decoration: none; /* Usuń podkreślenie linków */
+            justify-content: center;
+            text-align: center;
+            margin-right:50px;
+            margin-left: 20px;
+            font-size: 1em; /* Zwiększ rozmiar czcionki */
+            padding: 0px; /* Zmniejsz wewnętrzny padding */
+        }
+        
+
+        .top-nav img {
+            max-width: 215px; /* Dostosuj szerokość obrazka */
+            margin: 10px; /* Wyśrodkuj obrazek */
+            display: block; /* Zapobiegnij dziwnemu marginesowi z inline elements */
+            margin-top: -58px;
+            position: absolute;
+            left: 47%;
+            transform: translateX(-50%);
+        }
+        
+
+        .fa-facebook {
+            position:absolute;
+            right: 120px;
+            margin-top: 24px;
+        }
+        .fa-instagram{
+            position:absolute;
+            right: 140px;
+            margin-top: 24px; 
+        }
+        /* Dla pozycjonowania "Kontakt" po lewej stronie */
+        .kontakt {
+            position: absolute;
+            right: 40px;
+            margin-top: 25px;
+        }
+
+
+        /* Dla pozycjonowania "Produkty" po prawej stronie obok ikonki paska menu */
+        .index {
+            position: absolute;
+            left: 40px;
+            margin-top: 25px;
+        }
+
+
+        .side-nav {
+            position: relative;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 80%;
+            background-color: rgba(59, 58, 58, 0.3);
+            transition: left 0.3s;
+            z-index: 2;
+            align-items: flex-end;
+            flex-direction: column-reverse;
+            display: block;
+            flex-direction: left;
+            color: #ffffff;
+            text-align: left;
+            padding: 60px 0;
+            padding-top: -40px; /* Dodaj odstęp w górę */
+            margin-top: 20px;
+            text-decoration: none; /* Dodaj podkreślenie pod tekstem */
+            text-underline-position: none; /* Upewnij się, że podkreślenie jest poniżej tekstu */
+            text-decoration-thickness: 0; /* Ustaw grubość podkreślenia */
+            text-decoration-color: #ffffff; /* Ustaw kolor podkreślenia */
+            width: 15%;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        .side-nav.active {
+            left: 0;
+        }
+
+        .side-nav a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .side-nav a:hover {
+            background-color: rgba(59, 58, 58, 0.3);
+        }
+
+        #map {
+            height: 250px;
+            width: 100%;
+            display: none;
+        }
+
+        .menu-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .carousel {
+            display: flex;
+            overflow: hidden;
+            width: 40%;
+            height: 50px; /* Możesz dostosować wysokość paska */
+            position: fixed;
+            bottom: 0;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: auto;
+            animation: carousel 18s infinite linear;
+        }
+        
+        @keyframes carousel {
+            0% { transform: translateX(0); }
+            11% { transform: translateX(-100%); }
+            22% { transform: translateX(-200%); }
+            33% { transform: translateX(-300%); }
+            44% { transform: translateX(-400%); }
+            55% { transform: translateX(-500%); }
+            66% { transform: translateX(-600%); }
+            77% { transform: translateX(-700%); }
+            88% { transform: translateX(-800%); }
+            100% { transform: translateX(-900%); }
+        }
+        .image-pair {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 550px; /* Dodaj trochę odstępu między parami */
+            
+        }
+
+        .image-container, .image-container2 {
+            flex: 1; /* Każdy kontener zajmie połowę szerokości .image-pair */
+            margin-top: -500px;
+            
+        }
+
+        img {
+            width: 100%; /* Obrazki wypełnią cały kontener */
+            height: auto; /* Zachowaj proporcje obrazka */
+        }
+        .image-container img {
+            max-width: 70%;
+            margin-left: 90px; /* Dostosuj wartość do swoich potrzeb */
+        }
+        .image-container2 img {
+            margin-top: 60px; /* Dostosuj wartość do swoich potrzeb */
+            
+        }
+        
+        #imageGallery {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 40%; /* zmniejsz szerokość galerii */
+            height: 300px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -500px; /* przesuń w górę */
+            right: -100px;
+        }
+
+        #imageGallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            
+        }
+
+        #prev, #next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: pointer;
+        }
+
+        #prev { left: 70px; margin-top: 9550px;} /* umieść na lewej krawędzi obrazu */
+        #next { right: 720px; margin-top: 9550px;} /* umieść na prawej krawędzi obrazu */
+
+
+        #imageGallery3 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 40%; /* zmniejsz szerokość galerii */
+            height: 300px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -300px;
+            right: -800px;
+        }
+
+        #imageGallery3 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            
+        }
+        
+        #imageGallery5 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 40%; /* zmniejsz szerokość galerii */
+            height: 300px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: 50px;
+            right: -100px;
+        }
+
+        #imageGallery5 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            
+        }
+
+        #prev5, #next5 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: pointer;
+        }
+
+        #prev5 { left: 70px; margin-top: 9900px;} /* umieść na lewej krawędzi obrazu */
+        #next5 { right: 720px; margin-top: 9900px;}
+
+        #imageGallery6 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 40%; /* zmniejsz szerokość galerii */
+            height: 300px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -300px;
+            right: -800px;
+        }
+
+        #imageGallery6 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            
+        }
+
+        #prev6, #next6 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: pointer;
+        }
+
+        #prev6 { left: 780px; margin-top: 9900px;} /* umieść na lewej krawędzi obrazu */
+        #next6 { right: 20px; margin-top: 9900px;}
+
+        #imageGallery7 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 40%; /* zmniejsz szerokość galerii */
+            height: 300px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: 100px;
+            right: -800px;
+        }
+
+        #imageGallery7 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            
+        }
+
+        #prev7, #next7 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: pointer;
+        }
+
+        #prev7 { left: 780px; margin-top: 10300px;} /* umieść na lewej krawędzi obrazu */
+        #next7 { right: 20px; margin-top: 10300px;}
+        @media screen and (max-width: 600px) {
+            body {
+            background-color: white;
+            font-family: 'Roboto-Light.ttf', sans-serif;
+            color: black;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 120vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: rgba(59, 58, 58, 0.3);
+            padding: 0px 25px;
+            position: fixed;
+            float: right;
+            top: 0;
+            width: 90%;
+            z-index: 3;
+            flex-grow: 0;
+            color: rgb(255, 255, 255);
+            display: flex;
+            height: 9%;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            
+
+        }
+
+        .top-nav a {
+            color: white;
+            text-decoration: none;
+            justify-content: center;
+            text-align: center;
+            margin-right:50px;
+            margin-left: 20px;
+            font-size: 1em;
+            padding: 0px;
+        }
+        
+
+        .top-nav img {
+            max-width: 215px;
+            margin: 10px;
+            display: block;
+            margin-top: -55px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+
+        .fa-facebook {
+            position:absolute;
+            right: 30px;
+            margin-top: 24px;
+            display: none;
+        }
+        .fa-instagram{
+            position:absolute;
+            right: 5px;
+            margin-top: 24px; 
+            display: none;
+        }
+    
+        .kontakt {
+            position: absolute;
+            right: 16px;
+            margin-top: 25px;
+            display: none;
+        }
+
+        .index {
+            position: absolute;
+            left: 260px;
+            margin-top: 18px;
+            
+        }
+
+
+        .side-nav {
+            position: fixed;
+            top: 0;
+            left: -100px;
+            width: 500px;
+            height: 80%;
+            background-color: rgba(59, 58, 58, 0.3);
+            transition: left 0.3s;
+            z-index: 2;
+            align-items: flex-end;
+            flex-direction: column-reverse;
+            display: block;
+            flex-direction: left;
+            color: #ffffff;
+            text-align: left;
+            padding: 60px 0;
+            padding-top: -40px;
+            margin-top: 20px;
+            text-decoration: none;
+            text-underline-position: none;
+            text-decoration-thickness: 0;
+            text-decoration-color: #ffffff;
+            width: 25%;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        .side-nav.active {
+            left: 0;
+        }
+
+        .side-nav a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .side-nav a:hover {
+            background-color: rgba(59, 58, 58, 0.3);
+        }
+
+        #map {
+            height: 250px;
+            width: 100%;
+            display: none;
+        }
+
+        .menu-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .carousel {
+            display: none;
+            overflow: hidden;
+            width: 40%;
+            height: 50px;
+            position: fixed;
+            bottom: 0;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: auto;
+            animation: carousel 18s infinite linear;
+        }
+
+        @keyframes carousel {
+            0% { transform: translateX(0); }
+            11% { transform: translateX(-100%); }
+            22% { transform: translateX(-200%); }
+            33% { transform: translateX(-300%); }
+            44% { transform: translateX(-400%); }
+            55% { transform: translateX(-500%); }
+            66% { transform: translateX(-600%); }
+            77% { transform: translateX(-700%); }
+            88% { transform: translateX(-800%); }
+            100% { transform: translateX(-900%); }
+        }
+     
+        .image-pair {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 50px;
+            
+        }
+
+        .image-container, .image-container2 {
+            flex: 1;
+            margin-top: 100px;
+            
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+        .image-container img {
+            max-width: 100%;
+            right: -50px;
+            margin-top: 50px;
+        }
+        .image-container2 img {
+            margin-top: 60px;
+            display: none;
+           
+        }
+        #imageGallery {
+            position: relative;
+            overflow: hidden;
+            width: 40%;
+            height: 300px;
+            margin-top: -500px;
+            right: 10px;
+            display:none;
+        }
+
+        #imageGallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display:none;
+        }
+
+        #prev, #next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            color: transparent;
+            padding: 20px;
+            font-size: 2em;
+            cursor: pointer;
+            display:none;
+        }
+
+        #prev { left: 10px; margin-top: 3300px;}
+        #next { right: 10px; margin-top: 3300px;}
+
+        
+        #imageGallery2 {
+            position: relative;
+            overflow: hidden;
+            width: 40%;
+            height: 300px;
+            display: flex;
+            margin-top: 50px;
+            right: 10px;
+            display:none;
+        }
+
+        #imageGallery2 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display:none;
+            
+        }
+
+        #prev2, #next2{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            color: transparent;
+            padding: 20px;
+            font-size: 2em;
+            cursor: pointer;
+            display:none;
+        }
+
+        #prev2 { left: 10px; margin-top: 3600px;}
+        #next2{ right: 10px; margin-top: 3600px;}
+
+        #imageGallery3 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 40%; /* zmniejsz szerokość galerii */
+            height: 300px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: 40px;
+            right: 10px;
+        }
+
+        #imageGallery3 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            display: none;
+            
+        }
+        #imageGallery4 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 40%; /* zmniejsz szerokość galerii */
+            height: 300px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -300px;
+            right: 10px;
+        }
+
+        #imageGallery4 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            display: none;
+            
+        }
+
+        #prev4, #next4 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            color: transparent;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: none;
+            display: none;
+        }
+
+        #prev4 { left: 10px; margin-top: 7800px;} /* umieść na lewej krawędzi obrazu */
+        #next4 { right: 10px; margin-top: 7800px;}
+
+        #imageGallery5 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 40%; /* zmniejsz szerokość galerii */
+            height: 300px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: 50px;
+            right: 10px;
+            display: none;
+        }
+
+        #imageGallery5 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            display: none;
+            
+        }
+
+        #prev5, #next5 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            color: white;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: none;
+            display: none;
+        }
+
+        #prev5 { left: 10px; margin-top: 8150px;} /* umieść na lewej krawędzi obrazu */
+        #next5 { right: 10px; margin-top: 8150px;}
+
+        #imageGallery6 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 40%; /* zmniejsz szerokość galerii */
+            height: 300px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -300px;
+            right: 10px;
+            display: none;
+        }
+
+        #imageGallery6 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            display: none;
+        }
+
+        #prev6, #next6 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            color: white;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: pointer;
+            display: none;
+        }
+
+        #prev6 { left: 10px; margin-top: 8150px;} /* umieść na lewej krawędzi obrazu */
+        #next6 { right: 10px; margin-top: 8150px;}
+
+        #imageGallery7 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 40%; /* zmniejsz szerokość galerii */
+            height: 300px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: 100px;
+            right: 10px;
+            display: none;
+        }
+
+        #imageGallery7 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            display: none;
+            
+        }
+
+        #prev7, #next7 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            color: transparent;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: none;
+            display: none;
+        }
+
+        #prev7 { left: 10px; margin-top: 8550px;} /* umieść na lewej krawędzi obrazu */
+        #next7 { right: 10px; margin-top: 8550px;}
+
+    }
+        
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="menu-icon" onclick="toggleSideNav()">
+            <i class="fa fa-bars"></i>
+        </div>
+        <div class="top-nav">
+            <img src="nowelogo.png" alt="Logo"> <!-- Dodaj ścieżkę do własnej grafiki -->
+            <a href="tel:+48606670858" class="right kontakt">Kontakt</a>
+            <a href="index.html" class="left index">Strona główna</a>
+            <a href="https://www.facebook.com/profile.php?id=100063770163186" class="fa fa-facebook" target="_blank"></a>
+            <a href="https://www.instagram.com/topsystem.okna/" class="fa fa-instagram" target="_blank"></a>
+
+        </div>
+    </header>
+    <nav class="side-nav">
+        <a href="o_nas.html">O nas</a>
+        <a href="inspiracje.html">Inspiracje</a>
+        <a href="kontakt.html">Kontakt</a>
+        <section id="Map">
+            <iframe id="main-map"
+                width="100%"
+                height="350" 
+                frameborder="0"
+                style="border:0"
+                allowfullscreen
+                src="https://www.google.com/maps/embed/v1/place?q=Okrzei+11,Jelenia+Góra&key=AIzaSyBEyJIWiMvSVHI4zjozEvzet0q3raE56lk"
+            ></iframe>
+        </section>
+    </nav>
+    <div class="carousel">
+        <img src="firma1.jpg" alt="firma 1">
+        <img src="firma2.jpg" alt="firma 2">
+        <img src="firma3.jpg" alt="firma 3">
+        <img src="firma4.jpg" alt="firma 4">
+        <img src="firma5.jpg" alt="firma 5">
+        <img src="firma6.jpg" alt="firma 6">
+        <img src="firma7.jpg" alt="firma 7">
+        <img src="firma8.jpg" alt="firma 8">
+        <img src="firma9.jpg" alt="firma 9">
+        <img src="firma1.jpg" alt="firma 1">
+        <img src="firma2.jpg" alt="firma 1">
+
+    </div>
+
+    <div>
+    
+        <div class="image-pair">
+            <div class="image-container">
+                <img src="ST1.png" alt="ST1">
+            </div>
+            <div class="image-container2">
+                <img src="ST1.00.png" alt="ST1.00">
+            </div>
+        </div>
+       
+        <div class="image-pair">
+            <div class="image-container">
+                <img src="ST2.png" alt="ST2">
+            </div>
+            <div class="image-container2">
+                <img src="ST2.00.png" alt="ST2.00">
+            </div>
+        </div>
+       
+        <div class="image-pair">
+            <div class="image-container">
+                <img src="ST3.png" alt="ST3">
+            </div>
+            <div class="image-container2">
+                <img src="ST3.00.png" alt="ST3.00">
+            </div>
+        </div>
+        
+        <div class="image-pair">
+            <div class="image-container">
+                <img src="ST4.png" alt="ST4">
+            </div>
+            <div class="image-container2">
+                <img src="ST4.00.png" alt="ST4.00">
+            </div>
+        </div>
+        
+        <div class="image-pair">
+            <div class="image-container">
+                <img src="ST5.png" alt="ST5">
+            </div>
+            <div class="image-container2">
+                <img src="ST5.00.png" alt="ST5.00">
+            </div>
+        </div>
+        
+        <div class="image-pair">
+            <div class="image-container">
+                <img src="ST6.png" alt="ST6">
+            </div>
+            <div class="image-container2">
+                <img src="ST6.00.png" alt="ST6.00">
+            </div>
+        </div>
+        
+        <div class="image-pair">
+            <div class="image-container">
+                <img src="ST7.png" alt="ST7">
+            </div>
+            <div class="image-container2">
+                <img src="ST7.00.png" alt="ST7.00">
+            </div>
+        </div>
+     
+        <div class="image-pair">
+            <div class="image-container">
+                <img src="ST8.png" alt="ST8">
+            </div>
+            <div class="image-container2">
+                <img src="ST8.00.png" alt="ST8.00">
+            </div>
+        </div>
+       
+        <div class="image-pair">
+            <div class="image-container">
+                <img src="ST9.png" alt="ST9">
+            </div>
+            <div class="image-container2">
+                <img src="ST9.00.png" alt="ST9.00">
+            </div>
+        </div>
+       
+        <div class="image-pair">
+            <div class="image-container">
+                <img src="ST10.png" alt="ST10">
+            </div>
+            <div class="image-container2">
+                <img src="ST10.00.png" alt="ST10.00">
+            </div>
+        </div>
+        
+        <div class="image-pair">
+            <div class="image-container">
+                <img src="ST11.png" alt="ST11">
+            </div>
+            <div class="image-container2">
+                <img src="ST11.00.png" alt="ST11.00">
+            </div>
+        </div>
+       
+        <div class="image-pair">
+            <div class="image-container">
+                <img src="ST12.png" alt="ST12">
+            </div>
+            <div class="image-container2">
+                <img src="ST12.00.png" alt="ST12.00">
+            </div>
+        </div>
+        
+        <div class="image-pair">
+            <div class="image-container">
+                <img src="ST13.png" alt="ST13">
+            </div>
+            <div class="image-container2">
+                <img src="ST13.00.png" alt="ST13.00">
+            </div>
+        </div>
+        
+        <div class="image-pair">
+            <div class="image-container">
+                <img src="ST14.png" alt="ST14">
+            </div>
+            <div class="image-container2">
+                <img src="ST14.00.png" alt="ST14.00">
+            </div>
+        </div>
+        
+        <div class="image-pair">
+            <div class="image-container">
+                <img src="ST15.png" alt="ST15">
+            </div>
+            <div class="image-container2">
+                <img src="ST15.00.png" alt="ST15.00">
+            </div>
+        </div>
+        
+        <div class="image-pair">
+            <div class="image-container">
+                <img src="ST16.png" alt="ST16">
+            </div>
+            <div class="image-container2">
+                <img src="ST16.00.png" alt="ST16.00">
+            </div>
+        </div>
+                                                                                                  
+        <div id="imageGallery">
+            <img src="szyby1.0.png" alt="szyby1.0">
+            <img src="szyby1.png" alt="szyby1" style="display: none;">
+            <img src="szyby2.png" alt="szyby2" style="display: none;">
+            <img src="szyby3.png" alt="szyby3" style="display: none;">
+            <img src="szyby4.png" alt="szyby4" style="display: none;">
+            <img src="szyby5.png" alt="szyby5" style="display: none;">
+            <img src="szyby6.png" alt="szyby6" style="display: none;">
+            <img src="szyby7.png" alt="szyby7" style="display: none;">
+            <img src="szyby8.png" alt="szyby8" style="display: none;">
+            <img src="szyby9.png" alt="szyby9" style="display: none;">
+            <img src="szyby10.png" alt="szyby10" style="display: none;">
+            <img src="szyby11.png" alt="szyby11" style="display: none;">
+            <img src="szyby12.png" alt="szyby12" style="display: none;">
+            <img src="szyby13.png" alt="szyby13" style="display: none;">
+            <img src="szyby14.png" alt="szyby14" style="display: none;">
+            <img src="szyby15.png" alt="szyby15" style="display: none;">
+            <img src="szyby16.png" alt="szyby16" style="display: none;">
+            <img src="szyby17.png" alt="szyby17" style="display: none;">
+            <img src="szyby18.png" alt="szyby18" style="display: none;">
+            <img src="szyby19.png" alt="szyby19" style="display: none;">
+    
+           
+            </div>
+            <div id="prev">&lt;</div>
+            <div id="next">&gt;</div>
+   
+            <div id="imageGallery3">
+            <img src="Kpw.png" alt="Kpw">
+            </div>
+
+    
+            <div id="imageGallery5">
+                <img src="ramka0.png" alt="ramka0">
+                <img src="ramka1.0.png" alt="ramka1.0" style="display: none;">
+                <img src="ramka2.0.png" alt="ramka2.0" style="display: none;">
+                <img src="ramka3.0.png" alt="ramka3.0" style="display: none;">
+                <img src="ramka4.0.png" alt="ramka4.0" style="display: none;">
+            </div>
+    
+            <div id="prev5">&lt;</div>
+            <div id="next5">&gt;</div>
+    
+            <div id="imageGallery6">
+                <img src="szprosy0.png" alt="szprosy0">
+                <img src="szpros1.0.png" alt="szprosy1.0" style="display: none;">
+                <img src="szpros2.0.png" alt="szprosy2.0" style="display: none;">
+                <img src="szpros3.0.png" alt="szprosy3.0" style="display: none;">
+            </div>
+    
+            <div id="prev6">&lt;</div>
+            <div id="next6">&gt;</div>
+    
+            <div id="imageGallery7">
+                <img src="szyby0.png" alt="ramka0">
+                <img src="szyba1.0.png" alt="szyba1.0" style="display: none;">
+                <img src="szyba2.0.png" alt="szyba2.0" style="display: none;">
+                <img src="szyba3.0.png" alt="szyba3.0" style="display: none;">
+                <img src="szyba4.0.png" alt="szyba4.0" style="display: none;">
+            </div>
+    
+            <div id="prev7">&lt;</div>
+            <div id="next7">&gt;</div>
+    
+    
+        <script>
+            window.onload = function() {
+                var images = document.querySelectorAll('#imageGallery img');
+                
+               
+                var images5 = document.querySelectorAll('#imageGallery5 img');
+                var images6 = document.querySelectorAll('#imageGallery6 img');
+                var images7 = document.querySelectorAll('#imageGallery7 img');
+              
+               
+    
+                var currentIndex = 0;
+               
+            
+                
+                var currentIndex5 = 0;
+                var currentIndex6 = 0;
+                var currentIndex7 = 0;
+            
+               
+    
+                document.getElementById('prev').onclick = function() {
+                  images[currentIndex].style.display = 'none';
+                  currentIndex = (currentIndex - 1 + images.length) % images.length;
+                  images[currentIndex].style.display = 'block';
+                };
+              
+                document.getElementById('next').onclick = function() {
+                  images[currentIndex].style.display = 'none';
+                  currentIndex = (currentIndex + 1) % images.length;
+                  images[currentIndex].style.display = 'block';
+                };
+              
+                document.getElementById('prev5').onclick = function() {
+                  images5[currentIndex5].style.display = 'none';
+                  currentIndex5 = (currentIndex5 - 1 + images5.length) % images5.length;
+                  images5[currentIndex5].style.display = 'block';
+                };
+              
+                document.getElementById('next5').onclick = function() {
+                  images5[currentIndex5].style.display = 'none';
+                  currentIndex5 = (currentIndex5 + 1) % images5.length;
+                  images5[currentIndex5].style.display = 'block';
+                };
+    
+                document.getElementById('prev6').onclick = function() {
+                  images6[currentIndex6].style.display = 'none';
+                  currentIndex6 = (currentIndex6 - 1 + images6.length) % images6.length;
+                  images6[currentIndex6].style.display = 'block';
+                };
+              
+                document.getElementById('next6').onclick = function() {
+                  images6[currentIndex6].style.display = 'none';
+                  currentIndex6 = (currentIndex6 + 1) % images6.length;
+                  images6[currentIndex6].style.display = 'block';
+                };
+    
+                document.getElementById('prev7').onclick = function() {
+                  images7[currentIndex7].style.display = 'none';
+                  currentIndex7 = (currentIndex7 - 1 + images7.length) % images7.length;
+                  images7[currentIndex7].style.display = 'block';
+                };
+              
+                document.getElementById('next7').onclick = function() {
+                  images7[currentIndex7].style.display = 'none';
+                  currentIndex7 = (currentIndex7 + 1) % images7.length;
+                  images7[currentIndex7].style.display = 'block';
+                };
+            }
+                
+                 
+    
+        </script>
+    <script>
+        function toggleSideNav() {
+            const sideNav = document.querySelector('.side-nav');
+            const iframe = document.querySelector('#main-map iframe');
+
+            sideNav.classList.toggle('active');
+
+            if (sideNav.classList.contains('active')) {
+                // When the side-nav is active, show the main map
+                iframe.style.display = 'block';
+            } else {
+                // When the side-nav is not active, hide the main map
+                iframe.style.display = 'none';
+            }
+        }
+    </script>
+
+    <script>
+        function initMap() {
+            if (!document.getElementById('map-initialized')) {
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: { lat: -34.397, lng: 150.644 },
+                    zoom: 8
+                });
+                document.getElementById('map').style.display = 'block';
+                document.getElementById('map').setAttribute('id', 'map-initialized');
+            }
+        }
+    </script>
+        
+
+
+</body>
+
+</html>

@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            background-color: rgb(255, 255, 255);
+            font-family: 'Roboto-Light.ttf', sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 120vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: rgba(59, 58, 58, 0.3);
+            padding: 0px 25px;
+            position: fixed;
+            float: right;
+            top: 0;
+            width: 100%;
+            z-index: 3;
+            flex-grow: 0;
+            color: white;
+            display: flex;
+            height: 9%;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: center; /* Wyśrodkuj elementy */
+            text-align: center;
+            width: 100%; /* Ustaw szerokość na 100% */
+            
+
+        }
+
+        .top-nav a {
+            color: white;
+            text-decoration: none; /* Usuń podkreślenie linków */
+            justify-content: center;
+            text-align: center;
+            margin-right:50px;
+            margin-left: 20px;
+            font-size: 1em; /* Zwiększ rozmiar czcionki */
+            padding: 0px; /* Zmniejsz wewnętrzny padding */
+        }
+        
+
+        .top-nav img {
+            max-width: 215px; /* Dostosuj szerokość obrazka */
+            margin: 10px; /* Wyśrodkuj obrazek */
+            display: block; /* Zapobiegnij dziwnemu marginesowi z inline elements */
+            margin-top: -58px;
+            position: absolute;
+            left: 47%;
+            transform: translateX(-50%);
+        }
+        
+
+        .fa-facebook {
+            position:absolute;
+            right: 120px;
+            margin-top: 24px;
+        }
+        .fa-instagram{
+            position:absolute;
+            right: 140px;
+            margin-top: 24px; 
+        }
+        /* Dla pozycjonowania "Kontakt" po lewej stronie */
+        .kontakt {
+            position: absolute;
+            right: 40px;
+            margin-top: 25px;
+        }
+
+
+        /* Dla pozycjonowania "Produkty" po prawej stronie obok ikonki paska menu */
+        .index {
+            position: absolute;
+            left: 40px;
+            margin-top: 25px;
+        }
+
+
+        .side-nav {
+            position: relative;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 80%;
+            background-color: rgba(59, 58, 58, 0.3);
+            transition: left 0.3s;
+            z-index: 2;
+            align-items: flex-end;
+            flex-direction: column-reverse;
+            display: block;
+            flex-direction: left;
+            color: #ffffff;
+            text-align: left;
+            padding: 60px 0;
+            padding-top: -40px; /* Dodaj odstęp w górę */
+            margin-top: 20px;
+            text-decoration: none; /* Dodaj podkreślenie pod tekstem */
+            text-underline-position: none; /* Upewnij się, że podkreślenie jest poniżej tekstu */
+            text-decoration-thickness: 0; /* Ustaw grubość podkreślenia */
+            text-decoration-color: #ffffff; /* Ustaw kolor podkreślenia */
+            width: 15%;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        .side-nav.active {
+            left: 0;
+        }
+
+        .side-nav a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .side-nav a:hover {
+            background-color: rgba(59, 58, 58, 0.3);
+        }
+
+        #map {
+            height: 250px;
+            width: 100%;
+            display: none;
+        }
+
+        .menu-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .carousel {
+            display: flex;
+            overflow: hidden;
+            width: 40%;
+            height: 50px; /* Możesz dostosować wysokość paska */
+            position: fixed;
+            bottom: 0;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: auto;
+            animation: carousel 18s infinite linear;
+        }
+        
+        @keyframes carousel {
+            0% { transform: translateX(0); }
+            11% { transform: translateX(-100%); }
+            22% { transform: translateX(-200%); }
+            33% { transform: translateX(-300%); }
+            44% { transform: translateX(-400%); }
+            55% { transform: translateX(-500%); }
+            66% { transform: translateX(-600%); }
+            77% { transform: translateX(-700%); }
+            88% { transform: translateX(-800%); }
+            100% { transform: translateX(-900%); }
+        }
+      
+
+        .image-container img {
+            max-width: 100%;
+            position: center;
+            margin-top: -500px;
+            margin-bottom: 500px;
+        }
+     
+        .image-pair {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 550px; /* Dodaj trochę odstępu między parami */
+            
+        }
+
+        .image-container2, .image-container3 {
+            flex: 1; /* Każdy kontener zajmie połowę szerokości .image-pair */
+            margin-top: -500px;
+            
+        }
+
+        img {
+            width: 100%; /* Obrazki wypełnią cały kontener */
+            height: auto; /* Zachowaj proporcje obrazka */
+        }
+        .image-container2 img {
+            max-width: 85%;
+            margin-left: 80px; /* Dostosuj wartość do swoich potrzeb */
+        }
+        .image-container3 img {
+            max-width: 85%;
+            margin-top: 20px; /* Dostosuj wartość do swoich potrzeb */
+            
+        }
+        @media screen and (max-width: 600px) {
+            body {
+            background-color: white;
+            font-family: 'Roboto-Light.ttf', sans-serif;
+            color: black;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 120vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: rgba(59, 58, 58, 0.3);
+            padding: 0px 25px;
+            position: fixed;
+            float: right;
+            top: 0;
+            width: 90%;
+            z-index: 3;
+            flex-grow: 0;
+            color: rgb(255, 255, 255);
+            display: flex;
+            height: 9%;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: center; /* Wyśrodkuj elementy */
+            text-align: center;
+            width: 100%; /* Ustaw szerokość na 100% */
+            
+
+        }
+
+        .top-nav a {
+            color: white;
+            text-decoration: none; /* Usuń podkreślenie linków */
+            justify-content: center;
+            text-align: center;
+            margin-right:50px;
+            margin-left: 20px;
+            font-size: 1em; /* Zwiększ rozmiar czcionki */
+            padding: 0px; /* Zmniejsz wewnętrzny padding */
+        }
+        
+
+        .top-nav img {
+            max-width: 215px; /* Dostosuj szerokość obrazka */
+            margin: 10px; /* Wyśrodkuj obrazek */
+            display: block; /* Zapobiegnij dziwnemu marginesowi z inline elements */
+            margin-top: -60px;
+            position: absolute;
+            left: 44%;
+            transform: translateX(-50%);
+        }
+        
+
+        .fa-facebook {
+            position:absolute;
+            right: 30px;
+            margin-top: 24px;
+            display: none;
+        }
+        .fa-instagram{
+            position:absolute;
+            right: 5px;
+            margin-top: 24px; 
+            display: none;
+        }
+        /* Dla pozycjonowania "Kontakt" po lewej stronie */
+        .kontakt {
+            position: absolute;
+            right: 16px;
+            margin-top: 25px;
+            display: none;
+        }
+
+
+        /* Dla pozycjonowania "Produkty" po prawej stronie obok ikonki paska menu */
+        .index {
+            position: absolute;
+            left: 240px;
+            margin-top: 16px;
+            
+        }
+
+
+        .side-nav {
+            position: fixed;
+            top: 0;
+            left: -100px;
+            width: 500px;
+            height: 80%;
+            background-color: rgba(59, 58, 58, 0.3);
+            transition: left 0.3s;
+            z-index: 2;
+            align-items: flex-end;
+            flex-direction: column-reverse;
+            display: block;
+            flex-direction: left;
+            color: #ffffff;
+            text-align: left;
+            padding: 60px 0;
+            padding-top: -40px; /* Dodaj odstęp w górę */
+            margin-top: 20px;
+            text-decoration: none; /* Dodaj podkreślenie pod tekstem */
+            text-underline-position: none; /* Upewnij się, że podkreślenie jest poniżej tekstu */
+            text-decoration-thickness: 0; /* Ustaw grubość podkreślenia */
+            text-decoration-color: #ffffff; /* Ustaw kolor podkreślenia */
+            width: 25%;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        .side-nav.active {
+            left: 0;
+        }
+
+        .side-nav a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .side-nav a:hover {
+            background-color: rgba(59, 58, 58, 0.3);
+        }
+
+        #map {
+            height: 250px;
+            width: 100%;
+            display: none;
+        }
+
+        .menu-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .carousel {
+            display: none;
+            overflow: hidden;
+            width: 40%;
+            height: 50px; /* Możesz dostosować wysokość paska */
+            position: fixed;
+            bottom: 0;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: auto;
+            animation: carousel 18s infinite linear;
+        }
+
+        @keyframes carousel {
+            0% { transform: translateX(0); }
+            11% { transform: translateX(-100%); }
+            22% { transform: translateX(-200%); }
+            33% { transform: translateX(-300%); }
+            44% { transform: translateX(-400%); }
+            55% { transform: translateX(-500%); }
+            66% { transform: translateX(-600%); }
+            77% { transform: translateX(-700%); }
+            88% { transform: translateX(-800%); }
+            100% { transform: translateX(-900%); }
+        }
+        .image-container img {
+            max-width: 100%;
+            position: center;
+            margin-top: 100px;
+            margin-bottom: -100px;
+        }
+     
+        .image-pair {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 550px; /* Dodaj trochę odstępu między parami */
+            
+        }
+
+        .image-container2, .image-container3 {
+            flex: 1; /* Każdy kontener zajmie połowę szerokości .image-pair */
+            margin-top: -500px;
+            display: none;
+            
+        }
+
+        img {
+            width: 100%; /* Obrazki wypełnią cały kontener */
+            height: auto; /* Zachowaj proporcje obrazka */
+        
+        }
+        .image-container2 img {
+            max-width: 85%;
+            margin-left: 80px; /* Dostosuj wartość do swoich potrzeb */
+            display: none;
+        }
+        .image-container3 img {
+            max-width: 85%;
+            margin-top: 20px; /* Dostosuj wartość do swoich potrzeb */
+            display: none;
+            
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="menu-icon" onclick="toggleSideNav()">
+            <i class="fa fa-bars"></i>
+        </div>
+        <div class="top-nav">
+            <img src="nowelogo.png" alt="Logo"> <!-- Dodaj ścieżkę do własnej grafiki -->
+            <a href="tel:+48606670858" class="right kontakt">Kontakt</a>
+            <a href="index.html" class="left index">Strona główna</a>
+            <a href="https://www.facebook.com/profile.php?id=100063770163186" class="fa fa-facebook" target="_blank"></a>
+            <a href="https://www.instagram.com/topsystem.okna/" class="fa fa-instagram" target="_blank"></a>
+
+        </div>
+    </header>
+    <nav class="side-nav">
+        <a href="o_nas.html">O nas</a>
+        <a href="inspiracje.html">Inspiracje</a>
+        <a href="kontakt.html">Kontakt</a>
+        <section id="Map">
+            <iframe id="main-map"
+                width="100%"
+                height="350" 
+                frameborder="0"
+                style="border:0"
+                allowfullscreen
+                src="https://www.google.com/maps/embed/v1/place?q=Okrzei+11,Jelenia+Góra&key=AIzaSyBEyJIWiMvSVHI4zjozEvzet0q3raE56lk"
+            ></iframe>
+        </section>
+    </nav>
+    <div class="carousel">
+        <img src="firma1.jpg" alt="firma 1">
+        <img src="firma2.jpg" alt="firma 2">
+        <img src="firma3.jpg" alt="firma 3">
+        <img src="firma4.jpg" alt="firma 4">
+        <img src="firma5.jpg" alt="firma 5">
+        <img src="firma6.jpg" alt="firma 6">
+        <img src="firma7.jpg" alt="firma 7">
+        <img src="firma8.jpg" alt="firma 8">
+        <img src="firma9.jpg" alt="firma 9">
+        <img src="firma1.jpg" alt="firma 1">
+        <img src="firma2.jpg" alt="firma 1">
+
+    </div>
+
+    <div>
+   
+    
+     <div class="image-container">
+            <img src="ogrodzenie0.png" alt="ogrodzenie0">
+            <img src="ogrodzenie1.png" alt="ogrodzenie1">
+            <img src="ogrodzenie2.png" alt="ogrodzenie2">
+            <img src="ogrodzenie4.png" alt="ogrodzenie4">
+            <img src="ogrodzenie5.png" alt="ogrodzenie5">
+            <img src="ogrodzenie6.png" alt="ogrodzenie6">
+            <img src="ogrodzenie7.png" alt="ogrodzenie7">
+            <img src="ogrodzenie8.png" alt="ogrodzenie8">
+            <img src="ogrodzenie9.png" alt="ogrodzenie9">
+            <img src="ogrodzenie10.png" alt="ogrodzenie10">
+            <img src="ogrodzenie11.png" alt="ogrodzenie11">
+            <img src="ogrodzenie12.png" alt="ogrodzenie12">
+            <img src="ogrodzenie13.png" alt="ogrodzenie13">
+            <img src="ogrodzenie14.png" alt="ogrodzenie14">
+            <img src="ogrodzenie15.png" alt="ogrodzenie15">
+            <img src="ogrodzenie16.png" alt="ogrodzenie16">
+            <img src="ogrodzenie17.png" alt="ogrodzenie17">
+            <img src="ogrodzenie18.png" alt="ogrodzenie18">
+            <img src="ogrodzenie19.png" alt="ogrodzenie19">
+            <img src="ogrodzenie20.png" alt="ogrodzenie20">
+            <img src="ogrodzenie21.png" alt="ogrodzenie21">
+            <img src="ogrodzenie22.png" alt="ogrodzenie22">
+            <img src="ogrodzenie23.png" alt="ogrodzenie23">
+            <img src="ogrodzenie24.png" alt="ogrodzenie24">
+            <img src="ogrodzenie25.png" alt="ogrodzenie25">
+            <img src="ogrodzenie26.png" alt="ogrodzenie26">
+            <img src="ogrodzenie27.png" alt="ogrodzenie27">
+            <img src="ogrodzenie28.png" alt="ogrodzenie28">
+            <img src="ogrodzenie29.png" alt="ogrodzenie29">
+            <img src="ogrodzenie30.png" alt="ogrodzenie30">
+            <img src="ogrodzenie31.png" alt="ogrodzenie31">
+            <img src="ogrodzenie32.png" alt="ogrodzenie32">
+            <img src="ogrodzenie33.png" alt="ogrodzenie33">
+            <img src="ogrodzenie34.png" alt="ogrodzenie34">
+            <img src="ogrodzenie35.png" alt="ogrodzenie35">
+            <img src="ogrodzenie36.png" alt="ogrodzenie36">
+            <img src="ogrodzenie37.png" alt="ogrodzenie37">
+            <img src="ogrodzenie38.png" alt="ogrodzenie38">
+            <img src="ogrodzenie39.png" alt="ogrodzenie39">
+            <img src="ogrodzenie40.png" alt="ogrodzenie40">
+            <img src="ogrodzenie41.png" alt="ogrodzenie41">
+            <img src="ogrodzenie42.png" alt="ogrodzenie42">
+            <img src="ogrodzenie43.png" alt="ogrodzenie43">
+            <img src="ogrodzenie44.png" alt="ogrodzenie44">
+            <img src="ogrodzenie45.png" alt="ogrodzenie45">
+            <img src="ogrodzenie46.png" alt="ogrodzenie46">
+            <img src="ogrodzenie47.png" alt="ogrodzenie47">
+            <img src="ogrodzenie48.png" alt="ogrodzenie48">
+            <img src="ogrodzenie49.png" alt="ogrodzenie49">
+            <img src="ogrodzenie50.png" alt="ogrodzenie50">
+            <img src="ogrodzenie51.png" alt="ogrodzenie52">
+            <img src="ogrodzenie52.png" alt="ogrodzenie52">
+            <img src="ogrodzenie53.png" alt="ogrodzenie53">
+            <img src="ogrodzenie54.png" alt="ogrodzenie54">
+            <img src="ogrodzenie55.png" alt="ogrodzenie55">
+            <img src="ogrodzenie56.png" alt="ogrodzenie56">
+            <img src="ogrodzenie57.png" alt="ogrodzenie57">
+            <img src="ogrodzenie58.png" alt="ogrodzenie58">
+            <img src="ogrodzenie59.png" alt="ogrodzenie59">
+            <img src="ogrodzenie60.png" alt="ogrodzenie60">
+            <img src="ogrodzenie61.png" alt="ogrodzenie61">
+            <img src="ogrodzenie62.png" alt="ogrodzenie62">
+            <img src="ogrodzenie63.png" alt="ogrodzenie63">
+            <img src="ogrodzenie64.png" alt="ogrodzenie64">
+            <img src="ogrodzenie65.png" alt="ogrodzenie65">
+            <img src="ogrodzenie66.png" alt="ogrodzenie66">
+            <img src="ogrodzenie67.png" alt="ogrodzenie67">
+            <img src="ogrodzenie68.png" alt="ogrodzenie68">
+            <img src="ogrodzenie69.png" alt="ogrodzenie69">
+            <img src="ogrodzenie70.png" alt="ogrodzenie70">
+            <img src="ogrodzenie71.png" alt="ogrodzenie71">
+            <img src="ogrodzenie72.png" alt="ogrodzenie72">
+            <img src="ogrodzenie73.png" alt="ogrodzenie73">
+            <img src="ogrodzenie74.png" alt="ogrodzenie74">
+            <img src="ogrodzenie75.png" alt="ogrodzenie75">
+            <img src="ogrodzenie76.png" alt="ogrodzenie76">
+            <img src="ogrodzenie77.png" alt="ogrodzenie77">
+            <img src="ogrodzenie78.png" alt="ogrodzenie78">
+            <img src="ogrodzenie79.png" alt="ogrodzenie79">
+            <img src="ogrodzenie80.png" alt="ogrodzenie80">
+            <img src="ogrodzenie81.png" alt="ogrodzenie81">
+            <img src="ogrodzenie82.png" alt="ogrodzenie82">
+            <img src="ogrodzenie83.png" alt="ogrodzenie83">
+            <img src="ogrodzenie84.png" alt="ogrodzenie84">
+            <img src="ogrodzenie85.png" alt="ogrodzenie85">
+            <img src="ogrodzenie86.png" alt="ogrodzenie86">
+            <img src="ogrodzenie87.png" alt="ogrodzenie87">
+            <img src="ogrodzenie88.png" alt="ogrodzenie88">
+            <img src="ogrodzenie89.png" alt="ogrodzenie89">
+            <img src="ogrodzenie90.png" alt="ogrodzenie90">
+            <img src="ogrodzenie91.png" alt="ogrodzenie91">
+            <img src="ogrodzenie92.png" alt="ogrodzenie92">
+            <img src="ogrodzenie93.png" alt="ogrodzenie93">
+            <img src="ogrodzenie94.png" alt="ogrodzenie94">
+            <img src="ogrodzenie95.png" alt="ogrodzenie95">
+            <img src="ogrodzenie96.png" alt="ogrodzenie97">
+            <img src="ogrodzenie98.png" alt="ogrodzenie98">
+            <img src="ogrodzenie99.png" alt="ogrodzenie99">
+            <img src="ogrodzenie100.png" alt="ogrodzenie100">
+            <img src="ogrodzenie101.png" alt="ogrodzenie101">
+            <img src="ogrodzenie102.png" alt="ogrodzenie102">
+            <img src="ogrodzenie103.png" alt="ogrodzenie103">
+            <img src="ogrodzenie104.png" alt="ogrodzenie104">
+            <img src="ogrodzenie105.png" alt="ogrodzenie105">
+            <img src="ogrodzenie106.png" alt="ogrodzenie106">
+           
+        </div>
+     
+        <div class="image-pair">
+            <div class="image-container2">
+                <img src="ogrodzenie107.png" alt="ogrodzenie107">
+            </div>
+            <div class="image-container3">
+                <img src="ogrodzenie108.png" alt="ogrodzenie108">
+            </div>
+        </div>
+        <div class="image-pair">
+            <div class="image-container2">
+                <img src="ogrodzenie109.png" alt="ogrodzenie109">
+            </div>
+            <div class="image-container3">
+                <img src="ogrodzenie110.png" alt="ogrodzenie110">
+            </div>
+        </div>
+        <div class="image-pair">
+            <div class="image-container2">
+                <img src="ogrodzenie111.png" alt="ogrodzenie111">
+            </div>
+            <div class="image-container3">
+                <img src="ogrodzenie112.png" alt="ogrodzenie112">
+            </div>
+        </div>
+        <div class="image-pair">
+            <div class="image-container2">
+                <img src="ogrodzenie113.png" alt="ogrodzenie114">
+            </div>
+            <div class="image-container3">
+                <img src="ogrodzenie114.png" alt="ogrodzenie115">
+            </div>
+        </div>
+        <div class="image-pair">
+            <div class="image-container2">
+                <img src="ogrodzenie116.png" alt="ogrodzenie116">
+            </div>
+            <div class="image-container3">
+                <img src="ogrodzenie117.png" alt="ogrodzenie117">
+            </div>
+        </div>
+        
+           
+    <script>
+        function toggleSideNav() {
+            const sideNav = document.querySelector('.side-nav');
+            const iframe = document.querySelector('#main-map iframe');
+
+            sideNav.classList.toggle('active');
+
+            if (sideNav.classList.contains('active')) {
+                // When the side-nav is active, show the main map
+                iframe.style.display = 'block';
+            } else {
+                // When the side-nav is not active, hide the main map
+                iframe.style.display = 'none';
+            }
+        }
+    </script>
+
+    <script>
+        function initMap() {
+            if (!document.getElementById('map-initialized')) {
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: { lat: -34.397, lng: 150.644 },
+                    zoom: 8
+                });
+                document.getElementById('map').style.display = 'block';
+                document.getElementById('map').setAttribute('id', 'map-initialized');
+            }
+        }
+    </script>
+        
+
+
+</body>
+
+</html>

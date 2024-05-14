@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta name="viewport"content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            background-color: black;
+            font-family: 'Roboto-Light.ttf', sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 120vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: rgba(59, 58, 58, 0.3);
+            padding: 0px 25px;
+            position: fixed;
+            float: right;
+            top: 0;
+            width: 100%;
+            z-index: 3;
+            flex-grow: 0;
+            color: white;
+            display: flex;
+            height: 9%;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: center; /* Wyśrodkuj elementy */
+            text-align: center;
+            width: 100%; /* Ustaw szerokość na 100% */
+            
+
+        }
+
+        .top-nav a {
+            color: white;
+            text-decoration: none; /* Usuń podkreślenie linków */
+            justify-content: center;
+            text-align: center;
+            margin-right:50px;
+            margin-left: 20px;
+            font-size: 1em; /* Zwiększ rozmiar czcionki */
+            padding: 0px; /* Zmniejsz wewnętrzny padding */
+        }
+        
+
+        .top-nav img {
+            max-width: 215px; /* Dostosuj szerokość obrazka */
+            margin: 10px; /* Wyśrodkuj obrazek */
+            display: block; /* Zapobiegnij dziwnemu marginesowi z inline elements */
+            margin-top: -58px;
+            position: absolute;
+            left: 47%;
+            transform: translateX(-50%);
+        }
+        
+
+        .fa-facebook {
+            position:absolute;
+            right: 120px;
+            margin-top: 24px;
+        }
+        .fa-instagram{
+            position:absolute;
+            right: 140px;
+            margin-top: 24px; 
+        }
+        /* Dla pozycjonowania "Kontakt" po lewej stronie */
+        .kontakt {
+            position: absolute;
+            right: 40px;
+            margin-top: 25px;
+        }
+
+
+        /* Dla pozycjonowania "Produkty" po prawej stronie obok ikonki paska menu */
+        .index {
+            position: absolute;
+            left: 40px;
+            margin-top: 25px;
+        }
+
+
+        .side-nav {
+            position: relative;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 80%;
+            background-color: rgba(59, 58, 58, 0.3);
+            transition: left 0.3s;
+            z-index: 2;
+            align-items: flex-end;
+            flex-direction: column-reverse;
+            display: block;
+            flex-direction: left;
+            color: #ffffff;
+            text-align: left;
+            padding: 60px 0;
+            padding-top: -40px; /* Dodaj odstęp w górę */
+            margin-top: 20px;
+            text-decoration: none; /* Dodaj podkreślenie pod tekstem */
+            text-underline-position: none; /* Upewnij się, że podkreślenie jest poniżej tekstu */
+            text-decoration-thickness: 0; /* Ustaw grubość podkreślenia */
+            text-decoration-color: #ffffff; /* Ustaw kolor podkreślenia */
+            width: 15%;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        .side-nav.active {
+            left: 0;
+        }
+
+        .side-nav a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .side-nav a:hover {
+            background-color: rgba(59, 58, 58, 0.3);
+        }
+
+        #map {
+            height: 250px;
+            width: 100%;
+            display: none;
+        }
+
+        .menu-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .carousel {
+            display: flex;
+            overflow: hidden;
+            width: 40%;
+            height: 50px; /* Możesz dostosować wysokość paska */
+            position: fixed;
+            bottom: 0;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: auto;
+            animation: carousel 18s infinite linear;
+        }
+        
+        @keyframes carousel {
+            0% { transform: translateX(0); }
+            11% { transform: translateX(-100%); }
+            22% { transform: translateX(-200%); }
+            33% { transform: translateX(-300%); }
+            44% { transform: translateX(-400%); }
+            55% { transform: translateX(-500%); }
+            66% { transform: translateX(-600%); }
+            77% { transform: translateX(-700%); }
+            88% { transform: translateX(-800%); }
+            100% { transform: translateX(-900%); }
+        }
+        .image-container {
+            display:flex;
+            flex-direction: column;
+            width: 35%;
+            height: 30px;
+            margin-top: -500px;
+            margin-left: 90px;
+        }
+        
+        .image-container img {
+            margin-bottom: 60px;
+            display: none;
+        }
+      
+        .image-container2 {
+            display:flex;
+            flex-direction: column;
+            width: 50%;
+            height: 30px;
+            margin-top: -60px;
+            margin-left: 600px;
+            display: none;
+        }
+        .image-container2 img {
+            margin-bottom: 115px;
+            color: transparent;
+        }
+        #imageGallery {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 40%; /* zmniejsz szerokość galerii */
+            height: 300px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -60px; /* przesuń w górę */
+            right: -100px;
+        }
+
+        #imageGallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            
+        }
+
+        #prev, #next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: pointer;
+        }
+
+        #prev { left: 70px; margin-top: -120px;} /* umieść na lewej krawędzi obrazu */
+        #next { right: 720px; margin-top: -120px;} /* umieść na prawej krawędzi obrazu */
+
+        #imageGallery2 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 40%; /* zmniejsz szerokość galerii */
+            height: 300px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -300px;
+            right: -800px;
+        }
+
+        #imageGallery2 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            
+        }
+
+        #prev2, #next2 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: pointer;
+        }
+
+        #prev2 { left: 780px; margin-top: -120px;} /* umieść na lewej krawędzi obrazu */
+        #next2 { right: 20px; margin-top: -120px;}
+
+        #imageGallery3 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 40%; /* zmniejsz szerokość galerii */
+            height: 300px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: 40px;
+            right: -800px;
+        }
+
+        #imageGallery3 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            
+        }
+        #imageGallery4 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 40%; /* zmniejsz szerokość galerii */
+            height: 300px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -300px;
+            right: -100px;
+        }
+
+        #imageGallery4 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            
+        }
+
+        #prev4, #next4 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: pointer;
+        }
+
+        #prev4 { left: 70px; margin-top: 180px;} /* umieść na lewej krawędzi obrazu */
+        #next4 { right: 720px; margin-top: 180px;}
+
+        #imageGallery5 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 40%; /* zmniejsz szerokość galerii */
+            height: 300px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: 50px;
+            right: -100px;
+        }
+
+        #imageGallery5 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            
+        }
+
+        #prev5, #next5 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: pointer;
+        }
+
+        #prev5 { left: 70px; margin-top: 550px;} /* umieść na lewej krawędzi obrazu */
+        #next5 { right: 720px; margin-top: 550px;}
+
+        #imageGallery6 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 40%; /* zmniejsz szerokość galerii */
+            height: 300px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -300px;
+            right: -800px;
+        }
+
+        #imageGallery6 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            
+        }
+
+        #prev6, #next6 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: pointer;
+        }
+
+        #prev6 { left: 780px; margin-top: 550px;} /* umieść na lewej krawędzi obrazu */
+        #next6 { right: 20px; margin-top: 550px;}
+
+        #imageGallery7 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 40%; /* zmniejsz szerokość galerii */
+            height: 300px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: 100px;
+            right: -800px;
+        }
+
+        #imageGallery7 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            
+        }
+
+        #prev7, #next7 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: pointer;
+        }
+
+        #prev7 { left: 780px; margin-top: 950px;} /* umieść na lewej krawędzi obrazu */
+        #next7 { right: 20px; margin-top: 950px;}
+
+        #imageGallery8 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 40%; /* zmniejsz szerokość galerii */
+            height: 300px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -300px;
+            right: -100px;
+        }
+
+        #imageGallery8 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            
+        }
+
+        #prev8, #next8 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: pointer;
+        }
+
+        #prev8 { left: 70px; margin-top: 950px;} /* umieść na lewej krawędzi obrazu */
+        #next8 { right: 720px; margin-top: 950px;}
+
+        #imageGallery9{
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 70%; /* zmniejsz szerokość galerii */
+            height: 700px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: 100px;
+            right: -250px;
+        }
+
+        #imageGallery9 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            
+        }
+
+        #next9 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: pointer;
+        }
+        #next9 { right: 100px; margin-top: 1600px;}
+
+        #imageGallery10 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 40%; /* zmniejsz szerokość galerii */
+            height: 300px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: 10px;
+            right: -800px;
+        }
+
+        #imageGallery10 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            
+        }
+        
+        #imageGallery11 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 70%; /* zmniejsz szerokość galerii */
+            height: 300px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -300px; /* przesuń w górę */
+            right: 60px;
+        }
+
+        #imageGallery11 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            
+        }
+
+        #prev11, #next11 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0,0,0,0.5);
+            color: white;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: pointer;
+        }
+
+        #prev11 { left: 50px; margin-top: 2100px;} /* umieść na lewej krawędzi obrazu */
+        #next11 { right: 600px; margin-top: 2100px;} /* umieść na prawej krawędzi obrazu */
+      
+        @media screen and (max-width: 600px)  {
+            body {
+            background-color: black;
+            font-family: 'Roboto-Light.ttf', sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 120vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: rgba(59, 58, 58, 0.3);
+            padding: 0px 25px;
+            position: fixed;
+            float: right;
+            top: 0;
+            width: 85%;
+            z-index: 3;
+            flex-grow: 0;
+            color: white;
+            display: flex;
+            height: 9%;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: center; /* Wyśrodkuj elementy */
+            text-align: center;
+            width: 100%; /* Ustaw szerokość na 100% */
+            
+
+        }
+
+        .top-nav a {
+            color: white;
+            text-decoration: none; /* Usuń podkreślenie linków */
+            justify-content: center;
+            text-align: center;
+            margin-right:50px;
+            margin-left: 20px;
+            font-size: 1em; /* Zwiększ rozmiar czcionki */
+            padding: 0px; /* Zmniejsz wewnętrzny padding */
+        }
+        
+
+        .top-nav img {
+            max-width: 215px; /* Dostosuj szerokość obrazka */
+            margin: 10px; /* Wyśrodkuj obrazek */
+            display: block; /* Zapobiegnij dziwnemu marginesowi z inline elements */
+            margin-top: -54px;
+            position: absolute;
+            left: 47%;
+            transform: translateX(-50%);
+        }
+        
+
+        .fa-facebook {
+            position:absolute;
+            right: 30px;
+            margin-top: 24px;
+        }
+        .fa-instagram{
+            position:absolute;
+            right: 5px;
+            margin-top: 24px; 
+        }
+        /* Dla pozycjonowania "Kontakt" po lewej stronie */
+        .kontakt {
+            position: absolute;
+            right: 16px;
+            margin-top: 25px;
+            display: none;
+        }
+
+
+        /* Dla pozycjonowania "Produkty" po prawej stronie obok ikonki paska menu */
+        .index {
+            position: absolute;
+            left: 10px;
+            margin-top: 43px;
+        }
+
+
+        .side-nav {
+            position: fixed;
+            top: 0;
+            left: -100px;
+            width: 500px;
+            height: 80%;
+            background-color: rgba(59, 58, 58, 0.3);
+            transition: left 0.3s;
+            z-index: 2;
+            align-items: flex-end;
+            flex-direction: column-reverse;
+            display: block;
+            flex-direction: left;
+            color: #ffffff;
+            text-align: left;
+            padding: 60px 0;
+            padding-top: -40px; /* Dodaj odstęp w górę */
+            margin-top: 20px;
+            text-decoration: none; /* Dodaj podkreślenie pod tekstem */
+            text-underline-position: none; /* Upewnij się, że podkreślenie jest poniżej tekstu */
+            text-decoration-thickness: 0; /* Ustaw grubość podkreślenia */
+            text-decoration-color: #ffffff; /* Ustaw kolor podkreślenia */
+            width: 23%;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        .side-nav.active {
+            left: 0;
+        }
+
+        .side-nav a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .side-nav a:hover {
+            background-color: rgba(59, 58, 58, 0.3);
+        }
+
+        #map {
+            height: 250px;
+            width: 100%;
+            display: none;
+        }
+
+        .menu-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .carousel {
+            display: none;
+            overflow: hidden;
+            width: 40%;
+            height: 50px; /* Możesz dostosować wysokość paska */
+            position: fixed;
+            bottom: 0;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: auto;
+            animation: carousel 18s infinite linear;
+        }
+
+        @keyframes carousel {
+            0% { transform: translateX(0); }
+            11% { transform: translateX(-100%); }
+            22% { transform: translateX(-200%); }
+            33% { transform: translateX(-300%); }
+            44% { transform: translateX(-400%); }
+            55% { transform: translateX(-500%); }
+            66% { transform: translateX(-600%); }
+            77% { transform: translateX(-700%); }
+            88% { transform: translateX(-800%); }
+            100% { transform: translateX(-900%); }
+        }
+        .image-container {
+            display:flex;
+            flex-direction: column;
+            width: 35%;
+            height: 30px;
+            margin-top: 100px;
+            margin-left: 100px;
+        }
+        
+        .image-container img {
+            margin-bottom: 100px;
+            display: none;
+        }
+        .image-container2 {
+            display:flex;
+            flex-direction: column;
+            width: 50%;
+            height: 30px;
+            margin-top: 150px;
+            margin-left: 100px;
+        }
+        .image-container2 img {
+            margin-bottom: 115px;
+            color: transparent;
+            display: none;
+           
+        }
+        #imageGallery {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 70%; /* zmniejsz szerokość galerii */
+            height: 500px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -300px; /* przesuń w górę */
+            margin-left: -50px;
+        }
+
+        #imageGallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+           
+        }
+
+        #prev, #next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color:black;
+            color: black;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: none;
+            display: none;
+        }
+
+        #prev { left: 70px; margin-top: -120px;} /* umieść na lewej krawędzi obrazu */
+        #next { right: 720px; margin-top: -120px;} /* umieść na prawej krawędzi obrazu */
+
+        #imageGallery2 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 70%; /* zmniejsz szerokość galerii */
+            height: 500px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -200px;
+            right:-50px;
+        }
+
+        #imageGallery2 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            
+        }
+
+        #prev2, #next2 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: black;
+            color: black;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: none;
+            display: none;
+        }
+
+        #prev2 { left: 780px; margin-top: -120px;} /* umieść na lewej krawędzi obrazu */
+        #next2 { right: 20px; margin-top: -120px;}
+
+        #imageGallery3 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 70%; /* zmniejsz szerokość galerii */
+            height: 500px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -170px;
+            right: -50px;
+        }
+
+        #imageGallery3 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+          
+            
+        }
+        #imageGallery4 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 70%; /* zmniejsz szerokość galerii */
+            height: 500px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -150px;
+            margin-left: -50px;
+        }
+
+        #imageGallery4 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+           
+            
+        }
+
+        #prev4, #next4 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: black;
+            color: black;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: none;
+            display: none;
+        }
+
+        #prev4 { left: 70px; margin-top: 180px;} /* umieść na lewej krawędzi obrazu */
+        #next4 { right: 720px; margin-top: 180px;}
+
+        #imageGallery5 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 70%; /* zmniejsz szerokość galerii */
+            height: 500px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -130px;
+            margin-left: -50px;
+        }
+
+        #imageGallery5 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            
+            
+        }
+
+        #prev5, #next5 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: black;
+            color: black;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: none;
+            display: none;
+        }
+
+        #prev5 { left: 70px; margin-top: 550px;} /* umieść na lewej krawędzi obrazu */
+        #next5 { right: 720px; margin-top: 550px;}
+
+        #imageGallery6 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 70%; /* zmniejsz szerokość galerii */
+            height: 500px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -120px;
+            right: -50px;
+        }
+
+        #imageGallery6 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            
+            
+        }
+
+        #prev6, #next6 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color:black;
+            color: black;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: none;
+            display: none;
+        }
+
+        #prev6 { left: 780px; margin-top: 550px;} /* umieść na lewej krawędzi obrazu */
+        #next6 { right: 20px; margin-top: 550px;}
+
+        #imageGallery7 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 70%; /* zmniejsz szerokość galerii */
+            height: 500px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -110px;
+            right: -50px;
+        }
+
+        #imageGallery7 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+        
+            
+        }
+
+        #prev7, #next7 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: black;
+            color: black;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: none;
+            display: none;
+        }
+
+        #prev7 { left: 780px; margin-top: 950px;} /* umieść na lewej krawędzi obrazu */
+        #next7 { right: 20px; margin-top: 950px;}
+
+        #imageGallery8 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 80%; /* zmniejsz szerokość galerii */
+            height: 600px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -110px;
+            margin-left: -50px;
+        }
+
+        #imageGallery8 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+          
+            
+        }
+
+        #prev8, #next8 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: black;
+            color: black;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: none;
+            display: none;
+        }
+
+        #prev8 { left: 70px; margin-top: 950px;} /* umieść na lewej krawędzi obrazu */
+        #next8 { right: 720px; margin-top: 950px;}
+
+        #imageGallery9{
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 70%; /* zmniejsz szerokość galerii */
+            height: 700px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: 90px;
+            margin-left: -100px;
+        }
+
+        #imageGallery9 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            display: none;
+            
+        }
+
+        #next9, #prev9{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: black;
+            color:black;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: none;
+            display: none;
+        }
+        #next9 { right: 100px; margin-top: 1600px;}
+
+        #imageGallery10 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 70%; /* zmniejsz szerokość galerii */
+            height: 500px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -920px;
+            right: -50px;
+        }
+
+        #imageGallery10 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            
+        }
+        
+        #imageGallery11 {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 70%; /* zmniejsz szerokość galerii */
+            height: 500px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -120px; /* przesuń w górę */
+            right: -50px;
+        }
+
+        #imageGallery11 img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            
+        }
+
+        #prev11, #next11 {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: black;
+            color: black;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: none;
+            display: none;
+        }
+
+        #prev11 { left: 50px; margin-top: 2100px;} /* umieść na lewej krawędzi obrazu */
+        #next11 { right: 600px; margin-top: 2100px;} /* umieść na prawej krawędzi obrazu */
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="menu-icon" onclick="toggleSideNav()">
+            <i class="fa fa-bars"></i>
+        </div>
+        <div class="top-nav">
+            <img src="nowelogo.png" alt="Logo"> <!-- Dodaj ścieżkę do własnej grafiki -->
+            <a href="tel:+48606670858" class="right kontakt">Kontakt</a>
+            <a href="index.html" class="left index">Strona główna</a>
+            <a href="https://www.facebook.com/profile.php?id=100063770163186" class="fa fa-facebook" target="_blank"></a>
+            <a href="https://www.instagram.com/topsystem.okna/" class="fa fa-instagram" target="_blank"></a>
+
+        </div>
+    </header>
+    <nav class="side-nav">
+        <a href="o_nas.html">O nas</a>
+        <a href="inspiracje.html">Inspiracje</a>
+        <a href="kontakt.html">Kontakt</a>
+        <section id="Map">
+            <iframe id="main-map"
+                width="100%"
+                height="350" 
+                frameborder="0"
+                style="border:0"
+                allowfullscreen
+                src="https://www.google.com/maps/embed/v1/place?q=Okrzei+11,Jelenia+Góra&key=AIzaSyBEyJIWiMvSVHI4zjozEvzet0q3raE56lk"
+            ></iframe>
+        </section>
+    </nav>
+    <div class="carousel">
+        <img src="firma1.jpg" alt="firma 1">
+        <img src="firma2.jpg" alt="firma 2">
+        <img src="firma3.jpg" alt="firma 3">
+        <img src="firma4.jpg" alt="firma 4">
+        <img src="firma5.jpg" alt="firma 5">
+        <img src="firma6.jpg" alt="firma 6">
+        <img src="firma7.jpg" alt="firma 7">
+        <img src="firma8.jpg" alt="firma 8">
+        <img src="firma9.jpg" alt="firma 9">
+        <img src="firma1.jpg" alt="firma 1">
+        <img src="firma2.jpg" alt="firma 1">
+
+    </div>
+
+    <div>
+    <div class="image-container">
+        <img src="O1.png" alt="O1">
+    
+        <img src="O2.png" alt="O2">
+    
+        <img src="O3.png" alt="O3">
+        
+        <img src="O4.png" alt="O4">
+        
+        <img src="O5.png" alt="O5">
+   
+        <img src="O6.png" alt="O6">
+        
+        <img src="O7.png" alt="O7">
+
+        <img src="O8.png" alt="O8">
+       
+        <img src="O9.png" alt="O9">
+
+        <img src="O10.png" alt="O10">
+
+        <img src="O11.png" alt="O11">
+
+        <img src="O12.png" alt="O12">
+
+        <img src="O13.png" alt="O13">
+
+        <img src="O14.png" alt="O14">
+
+        <img src="O15.png" alt="O15">
+
+   
+     </div>
+
+    <div class="image-container2">
+        <img src="O1.0.png" alt="O1.0">
+        <img src="O2.0.png" alt="O2.0"> 
+        <img src="O3.0.png" alt="O3.0">
+        <img src="O4.0.png" alt="O4.0">
+        <img src="O5.0.png" alt="O5.0">
+        <img src="O6.0.png" alt="O6.0">
+        <img src="O7.0.png" alt="O7.0">
+        <img src="O8.0.png" alt="O8.0">
+        <img src="O9.0.png" alt="O9.0">
+        <img src="O10.0.png" alt="O10.0">
+        <img src="O11.0.png" alt="O11.0">
+        <img src="O12.0.png" alt="O12.0">
+        <img src="O13.0.png" alt="O13.0">
+        <img src="O14.0.png" alt="O14.0">
+        <img src="O15.0.png" alt="O15.0">
+    </div>
+
+    <div id="imageGallery">
+        <img src="szyby1.0.png" alt="szyby1.0">
+        <img src="szyby1.png" alt="szyby1" style="display: none;">
+        <img src="szyby2.png" alt="szyby2" style="display: none;">
+        <img src="szyby3.png" alt="szyby3" style="display: none;">
+        <img src="szyby4.png" alt="szyby4" style="display: none;">
+        <img src="szyby5.png" alt="szyby5" style="display: none;">
+        <img src="szyby6.png" alt="szyby6" style="display: none;">
+        <img src="szyby7.png" alt="szyby7" style="display: none;">
+        <img src="szyby8.png" alt="szyby8" style="display: none;">
+        <img src="szyby9.png" alt="szyby9" style="display: none;">
+        <img src="szyby10.png" alt="szyby10" style="display: none;">
+        <img src="szyby11.png" alt="szyby11" style="display: none;">
+        <img src="szyby12.png" alt="szyby12" style="display: none;">
+        <img src="szyby13.png" alt="szyby13" style="display: none;">
+        <img src="szyby14.png" alt="szyby14" style="display: none;">
+        <img src="szyby15.png" alt="szyby15" style="display: none;">
+        <img src="szyby16.png" alt="szyby16" style="display: none;">
+        <img src="szyby17.png" alt="szyby17" style="display: none;">
+        <img src="szyby18.png" alt="szyby18" style="display: none;">
+        <img src="szyby19.png" alt="szyby19" style="display: none;">
+
+       
+  </div>
+        <div id="prev">&lt;</div>
+        <div id="next">&gt;</div>
+
+    <div id="imageGallery2">
+        <img src="okucia1.0.png" alt="okucia1.0">
+        <img src="OKUCIA1.png" alt="OKUCIA1" style="display: none;">
+        <img src="okucia2.0.png" alt="okucia2.0" style="display: none;">
+        <img src="okucia3.0.png" alt="okucia3.0" style="display: none;">
+        <img src="okucia4.0.png" alt="okucia4.0" style="display: none;">
+        <img src="okucia5.0.png" alt="okucia5.0" style="display: none;">
+        <img src="okucia6.0.png" alt="okucia6.0" style="display: none;">
+        <img src="okucia7.0.png" alt="okucia7.0" style="display: none;">
+        <img src="okucia8.0.png" alt="okucia8.0" style="display: none;">
+        <img src="okucia9.0.png" alt="okucia9.0" style="display: none;">
+    </div>
+
+        <div id="prev2">&lt;</div>
+        <div id="next2">&gt;</div>
+
+        <div id="imageGallery3">
+        <img src="PARAPET1.0.png" alt="PARAPET1.0">
+        </div>
+        <div id="imageGallery4">
+            <img src="progi0.png" alt="progi0">
+            <img src="prog1.0.png" alt="prog1.0" style="display: none;">
+            <img src="prog2.0.png" alt="prog2.0" style="display: none;">
+            <img src="prog3.0.png" alt="prog3.0" style="display: none;">
+            <img src="prog4.0.png" alt="prog4.0" style="display: none;">
+            <img src="prog5.0.png" alt="prog5.0" style="display: none;">
+        </div>
+
+        <div id="prev4">&lt;</div>
+        <div id="next4">&gt;</div>
+
+        <div id="imageGallery5">
+            <img src="ramka0.png" alt="ramka0">
+            <img src="ramka1.0.png" alt="ramka1.0" style="display: none;">
+            <img src="ramka2.0.png" alt="ramka2.0" style="display: none;">
+            <img src="ramka3.0.png" alt="ramka3.0" style="display: none;">
+            <img src="ramka4.0.png" alt="ramka4.0" style="display: none;">
+        </div>
+
+        <div id="prev5">&lt;</div>
+        <div id="next5">&gt;</div>
+
+        <div id="imageGallery6">
+            <img src="szprosy0.png" alt="szprosy0">
+            <img src="szpros1.0.png" alt="szprosy1.0" style="display: none;">
+            <img src="szpros2.0.png" alt="szprosy2.0" style="display: none;">
+            <img src="szpros3.0.png" alt="szprosy3.0" style="display: none;">
+        </div>
+
+        <div id="prev6">&lt;</div>
+        <div id="next6">&gt;</div>
+
+        <div id="imageGallery7">
+            <img src="szyby0.png" alt="ramka0">
+            <img src="szyba1.0.png" alt="szyba1.0" style="display: none;">
+            <img src="szyba2.0.png" alt="szyba2.0" style="display: none;">
+            <img src="szyba3.0.png" alt="szyba3.0" style="display: none;">
+            <img src="szyba4.0.png" alt="szyba4.0" style="display: none;">
+        </div>
+
+        <div id="prev7">&lt;</div>
+        <div id="next7">&gt;</div>
+
+        <div id="imageGallery8">
+            <img src="wentylacje0.png" alt="wentylacje0">
+            <img src="wentylacja1.0.png" alt="wentylacja1.0" style="display: none;">
+            <img src="wentylacja2.0.png" alt="wentylacja2.0" style="display: none;">
+            <img src="wentylacja3.0.png" alt="wentylacja3.0" style="display: none;">
+            <img src="wentylacja4.0.png" alt="wentylacja4.0" style="display: none;">
+            <img src="wentylacja5.0.png" alt="wentylacja5.0" style="display: none;">
+            <img src="wentylacja6.0.png" alt="wentylacja6.0" style="display: none;">
+            <img src="wentylacja7.0.png" alt="wentylacja7.0" style="display: none;">
+            <img src="wentylacja8.0.png" alt="wentylacja8.0" style="display: none;">
+            <img src="wentylacja9.0.png" alt="wentylacja9.0" style="display: none;">
+        </div>
+
+        <div id="prev8">&lt;</div>
+        <div id="next8">&gt;</div>
+
+        <div id="imageGallery9">
+            <img src="klamki1.0.png" alt="klamki1.0">
+            <img src="klamki2.0.png" alt="klamki2.0" style="display: none;">
+           
+        </div>
+
+        <div id="prev9">&lt;</div>
+        <div id="next9">&gt;</div>
+
+        <div id="imageGallery10">
+            <img src="Kpw.png" alt="Kpw">
+            </div>
+
+        <div id="imageGallery11">
+            <img src="Dklamka0.png" alt="Dklamka0">
+            <img src="Dklamka1.png" alt="Dklamka1" style="display: none;">
+            <img src="Dklamki2.png" alt="Dklamki2" style="display: none;">
+            <img src="Dklamka3.png" alt="Dklamka3" style="display: none;">
+                
+        </div>
+        
+        <div id="prev11">&lt;</div>
+        <div id="next11">&gt;</div>
+    <script>
+        window.onload = function() {
+            var images = document.querySelectorAll('#imageGallery img');
+            var images2 = document.querySelectorAll('#imageGallery2 img');
+            var images4 = document.querySelectorAll('#imageGallery4 img');
+            var images5 = document.querySelectorAll('#imageGallery5 img');
+            var images6 = document.querySelectorAll('#imageGallery6 img');
+            var images7 = document.querySelectorAll('#imageGallery7 img');
+            var images8 = document.querySelectorAll('#imageGallery8 img');
+            var images9 = document.querySelectorAll('#imageGallery9 img');
+            var images11 = document.querySelectorAll('#imageGallery11 img');
+            var currentIndex = 0;
+            var currentIndex2 = 0;
+            var currentIndex4 = 0;
+            var currentIndex5 = 0;
+            var currentIndex6 = 0;
+            var currentIndex7 = 0;
+            var currentIndex8 = 0;
+            var currentIndex9 = 0;
+            var currentIndex11 = 0;
+
+            document.getElementById('prev').onclick = function() {
+              images[currentIndex].style.display = 'none';
+              currentIndex = (currentIndex - 1 + images.length) % images.length;
+              images[currentIndex].style.display = 'block';
+            };
+          
+            document.getElementById('next').onclick = function() {
+              images[currentIndex].style.display = 'none';
+              currentIndex = (currentIndex + 1) % images.length;
+              images[currentIndex].style.display = 'block';
+            };
+          
+            document.getElementById('prev2').onclick = function() {
+              images2[currentIndex2].style.display = 'none';
+              currentIndex2 = (currentIndex2 - 1 + images2.length) % images2.length;
+              images2[currentIndex2].style.display = 'block';
+            };
+          
+            document.getElementById('next2').onclick = function() {
+              images2[currentIndex2].style.display = 'none';
+              currentIndex2 = (currentIndex2 + 1) % images2.length;
+              images2[currentIndex2].style.display = 'block';
+            };
+
+            document.getElementById('prev4').onclick = function() {
+              images4[currentIndex4].style.display = 'none';
+              currentIndex4 = (currentIndex4 - 1 + images4.length) % images4.length;
+              images4[currentIndex4].style.display = 'block';
+            };
+          
+            document.getElementById('next4').onclick = function() {
+              images4[currentIndex4].style.display = 'none';
+              currentIndex4 = (currentIndex4 + 1) % images4.length;
+              images4[currentIndex4].style.display = 'block';
+            };
+            document.getElementById('prev5').onclick = function() {
+              images5[currentIndex5].style.display = 'none';
+              currentIndex5 = (currentIndex5 - 1 + images5.length) % images5.length;
+              images5[currentIndex5].style.display = 'block';
+            };
+          
+            document.getElementById('next5').onclick = function() {
+              images5[currentIndex5].style.display = 'none';
+              currentIndex5 = (currentIndex5 + 1) % images5.length;
+              images5[currentIndex5].style.display = 'block';
+            };
+
+            document.getElementById('prev6').onclick = function() {
+              images6[currentIndex6].style.display = 'none';
+              currentIndex6 = (currentIndex6 - 1 + images6.length) % images6.length;
+              images6[currentIndex6].style.display = 'block';
+            };
+          
+            document.getElementById('next6').onclick = function() {
+              images6[currentIndex6].style.display = 'none';
+              currentIndex6 = (currentIndex6 + 1) % images6.length;
+              images6[currentIndex6].style.display = 'block';
+            };
+
+            document.getElementById('prev7').onclick = function() {
+              images7[currentIndex7].style.display = 'none';
+              currentIndex7 = (currentIndex7 - 1 + images7.length) % images7.length;
+              images7[currentIndex7].style.display = 'block';
+            };
+          
+            document.getElementById('next7').onclick = function() {
+              images7[currentIndex7].style.display = 'none';
+              currentIndex7 = (currentIndex7 + 1) % images7.length;
+              images7[currentIndex7].style.display = 'block';
+            };
+
+            document.getElementById('prev8').onclick = function() {
+              images8[currentIndex8].style.display = 'none';
+              currentIndex8 = (currentIndex8 - 1 + images8.length) % images8.length;
+              images8[currentIndex8].style.display = 'block';
+            };
+          
+            document.getElementById('next8').onclick = function() {
+              images8[currentIndex8].style.display = 'none';
+              currentIndex8 = (currentIndex8 + 1) % images8.length;
+              images8[currentIndex8].style.display = 'block';
+            };
+
+         
+            document.getElementById('next9').onclick = function() {
+              images9[currentIndex9].style.display = 'none';
+              currentIndex9 = (currentIndex9 + 1) % images9.length;
+              images9[currentIndex9].style.display = 'block';
+            };
+
+            document.getElementById('prev11').onclick = function() {
+              images11[currentIndex11].style.display = 'none';
+              currentIndex11 = (currentIndex11 - 1 + images11.length) % images11.length;
+              images11[currentIndex11].style.display = 'block';
+            };
+          
+            document.getElementById('next11').onclick = function() {
+              images11[currentIndex11].style.display = 'none';
+              currentIndex11 = (currentIndex11 + 1) % images11.length;
+              images11[currentIndex11].style.display = 'block';
+            };
+          };
+
+    </script>
+
+    <script>
+        function toggleSideNav() {
+            const sideNav = document.querySelector('.side-nav');
+            const iframe = document.querySelector('#main-map iframe');
+
+            sideNav.classList.toggle('active');
+
+            if (sideNav.classList.contains('active')) {
+                // When the side-nav is active, show the main map
+                iframe.style.display = 'block';
+            } else {
+                // When the side-nav is not active, hide the main map
+                iframe.style.display = 'none';
+            }
+        }
+    </script>
+
+    <script>
+        function initMap() {
+            if (!document.getElementById('map-initialized')) {
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: { lat: -34.397, lng: 150.644 },
+                    zoom: 8
+                });
+                document.getElementById('map').style.display = 'block';
+                document.getElementById('map').setAttribute('id', 'map-initialized');
+            }
+        }
+    </script>
+        
+
+
+</body>
+
+</html>

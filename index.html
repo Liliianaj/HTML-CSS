@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta name="google-site-verification" content="WM2vahZnnC63NKot">
+    <meta name="viewport"content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <style>
+        body {
+            background-color: black;
+            font-family: 'Roboto-Light.ttf', sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 120vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: rgba(59, 58, 58, 0.3);
+            padding: 0px 25px;
+            position: fixed;
+            float: right;
+            top: 0;
+            width: 100%;
+            z-index: 3;
+            flex-grow: 0;
+            color: white;
+            display: flex;
+            height: 9%;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: center; /* Wyśrodkuj elementy */
+            text-align: center;
+            width: 100%; /* Ustaw szerokość na 100% */
+            
+
+        }
+
+        .top-nav a {
+            color: white;
+            text-decoration: none; /* Usuń podkreślenie linków */
+            justify-content: center;
+            text-align: center;
+            margin-right:50px;
+            margin-left: 20px;
+            font-size: 1em; /* Zwiększ rozmiar czcionki */
+            padding: 0px; /* Zmniejsz wewnętrzny padding */
+        }
+        
+
+        .top-nav img {
+            max-width: 215px; /* Dostosuj szerokość obrazka */
+            margin: 10px; /* Wyśrodkuj obrazek */
+            display: block; /* Zapobiegnij dziwnemu marginesowi z inline elements */
+            margin-top: -58px;
+            position: absolute;
+            left: 47%;
+            transform: translateX(-50%);
+        }
+        
+
+        .fa-facebook {
+            position:absolute;
+            right: 120px;
+            margin-top: 24px;
+        }
+        .fa-instagram{
+            position:absolute;
+            right: 140px;
+            margin-top: 24px; 
+        }
+        /* Dla pozycjonowania "Kontakt" po lewej stronie */
+        .kontakt {
+            position: absolute;
+            right: 40px;
+            margin-top: 25px;
+        }
+
+
+        /* Dla pozycjonowania "Produkty" po prawej stronie obok ikonki paska menu */
+        .produkty {
+            position: absolute;
+            left: 40px;
+            margin-top: 25px;
+        }
+
+
+        .side-nav {
+            position: relative;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 80%;
+            background-color: rgba(59, 58, 58, 0.3);
+            transition: left 0.3s;
+            z-index: 2;
+            align-items: flex-end;
+            flex-direction: column-reverse;
+            display: block;
+            flex-direction: left;
+            color: #ffffff;
+            text-align: left;
+            padding: 60px 0;
+            padding-top: -40px; /* Dodaj odstęp w górę */
+            margin-top: 20px;
+            text-decoration: none; /* Dodaj podkreślenie pod tekstem */
+            text-underline-position: none; /* Upewnij się, że podkreślenie jest poniżej tekstu */
+            text-decoration-thickness: 0; /* Ustaw grubość podkreślenia */
+            text-decoration-color: #ffffff; /* Ustaw kolor podkreślenia */
+            width: 15%;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        .side-nav.active {
+            left: 0;
+        }
+
+        .side-nav a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .side-nav a:hover {
+            background-color: rgba(59, 58, 58, 0.3);
+        }
+
+        #map {
+            height: 250px;
+            width: 100%;
+            display: none;
+        }
+
+        .menu-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .carousel {
+            display: flex;
+            overflow: hidden;
+            width: 40%;
+            height: 50px; /* Możesz dostosować wysokość paska */
+            position: fixed;
+            bottom: 0;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: auto;
+            animation: carousel 18s infinite linear;
+        }
+
+        @keyframes carousel {
+            0% { transform: translateX(0); }
+            11% { transform: translateX(-100%); }
+            22% { transform: translateX(-200%); }
+            33% { transform: translateX(-300%); }
+            44% { transform: translateX(-400%); }
+            55% { transform: translateX(-500%); }
+            66% { transform: translateX(-600%); }
+            77% { transform: translateX(-700%); }
+            88% { transform: translateX(-800%); }
+            100% { transform: translateX(-900%); }
+        }
+     
+        #imageGallery {
+            position: relative;
+            display: flex;
+            overflow: hidden;
+            width: 50%; /* zmniejsz szerokość galerii */
+            height: 500px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -1950px; /* przesuń w górę */
+            right: -350px;
+        }
+
+        #imageGallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            transition: opacity 0.5s ease; /* Add this line */
+            
+        }
+
+        #prev, #next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            color: transparent;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: pointer;
+        }
+
+        #prev { left: 400px; } /* umieść na lewej krawędzi obrazu */
+        #next { right: 400px; } /* umieść na prawej krawędzi obrazu */
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 50px;
+        }
+
+        .block-link {
+            width: calc(100% /5);
+            height: 200px;
+            margin: 5px; /* Dostosuj marginesy według potrzeb */
+            overflow: hidden;
+            text-decoration: none;
+            
+        }
+
+        .block-link img {
+            width: 100%;
+            height: auto; /* Zachowaj proporcje obrazu */
+            object-fit: cover;
+        }
+
+        /* Opcjonalnie, jeśli chcesz, aby podpisy były wyświetlane pod obrazami */
+        figcaption {
+            text-align: center;
+            text-decoration: none; /* Usunięcie podkreśleń */
+            color: white; /* Ustawienie koloru tekstu na biały */
+        }
+
+        .footer-section {
+            background-color: rgba(59, 58, 58, 0.3);
+            padding: 15px;
+            height: 20%;
+            margin: 10px;
+            line-height: normal;
+            text-align: center;
+            color: #ffffff;
+            margin-top: 50px;
+            
+        }
+        .footer-section h2 {
+            color: #ffffff;
+        }
+        .footer-section p {
+            color: #ffffff;
+        }
+        #cookieConsent {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color:  rgba(59, 58, 58, 0.3);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            z-index: 10000;
+            display: none;
+        }
+      
+        @media screen and (max-width: 600px)  {
+            body {
+            background-color: black;
+            font-family: 'Roboto-Light.ttf', sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 120vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: rgba(59, 58, 58, 0.3);
+            padding: 0px 25px;
+            position: fixed;
+            float: right;
+            top: 0;
+            width: 75%;
+            z-index: 3;
+            flex-grow: 0;
+            color: white;
+            display: flex;
+            height: 9%;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: center; /* Wyśrodkuj elementy */
+            text-align: center;
+            width: 100%; /* Ustaw szerokość na 100% */
+            
+
+        }
+
+        .top-nav a {
+            color: white;
+            text-decoration: none; /* Usuń podkreślenie linków */
+            justify-content: center;
+            text-align: center;
+            margin-right:50px;
+            margin-left: 20px;
+            font-size: 1em; /* Zwiększ rozmiar czcionki */
+            padding: 0px; /* Zmniejsz wewnętrzny padding */
+        }
+        
+
+        .top-nav img {
+            max-width: 215px; /* Dostosuj szerokość obrazka */
+            margin: 10px; /* Wyśrodkuj obrazek */
+            display: block; /* Zapobiegnij dziwnemu marginesowi z inline elements */
+            margin-top: -54px;
+            position: absolute;
+            left: 47%;
+            transform: translateX(-50%);
+        }
+        
+
+        .fa-facebook {
+            position:absolute;
+            right: 30px;
+            margin-top: 24px;
+        }
+        .fa-instagram{
+            position:absolute;
+            right: 5px;
+            margin-top: 24px; 
+        }
+        /* Dla pozycjonowania "Kontakt" po lewej stronie */
+        .kontakt {
+            position: absolute;
+            right: 16px;
+            margin-top: 25px;
+            display: none;
+        }
+
+
+        /* Dla pozycjonowania "Produkty" po prawej stronie obok ikonki paska menu */
+        .produkty {
+            position: absolute;
+            left: 40px;
+            margin-top: 25px;
+            display: none;
+        }
+
+
+        .side-nav {
+            position: fixed;
+            top: 0;
+            left: -100px;
+            width: 500px;
+            height: 80%;
+            background-color: rgba(59, 58, 58, 0.3);
+            transition: left 0.3s;
+            z-index: 2;
+            align-items: flex-end;
+            flex-direction: column-reverse;
+            display: block;
+            flex-direction: left;
+            color: #ffffff;
+            text-align: left;
+            padding: 60px 0;
+            padding-top: -40px; /* Dodaj odstęp w górę */
+            margin-top: 20px;
+            text-decoration: none; /* Dodaj podkreślenie pod tekstem */
+            text-underline-position: none; /* Upewnij się, że podkreślenie jest poniżej tekstu */
+            text-decoration-thickness: 0; /* Ustaw grubość podkreślenia */
+            text-decoration-color: #ffffff; /* Ustaw kolor podkreślenia */
+            width: 22%;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        .side-nav.active {
+            left: 0;
+        }
+
+        .side-nav a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .side-nav a:hover {
+            background-color: rgba(59, 58, 58, 0.3);
+        }
+
+        #map {
+            height: 250px;
+            width: 100%;
+            display: none;
+        }
+
+        .menu-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .carousel {
+            display: none;
+            overflow: hidden;
+            width: 40%;
+            height: 50px; /* Możesz dostosować wysokość paska */
+            position: fixed;
+            bottom: 0;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: auto;
+            animation: carousel 18s infinite linear;
+        }
+
+        @keyframes carousel {
+            0% { transform: translateX(0); }
+            11% { transform: translateX(-100%); }
+            22% { transform: translateX(-200%); }
+            33% { transform: translateX(-300%); }
+            44% { transform: translateX(-400%); }
+            55% { transform: translateX(-500%); }
+            66% { transform: translateX(-600%); }
+            77% { transform: translateX(-700%); }
+            88% { transform: translateX(-800%); }
+            100% { transform: translateX(-900%); }
+        }
+   
+        #imageGallery {
+            position: relative;
+            display: none;
+            overflow: hidden;
+            width: 50%; /* zmniejsz szerokość galerii */
+            height: 500px; /* ustal wysokość galerii */
+            display: flex;
+            margin-top: -1950px; /* przesuń w górę */
+            right: -350px;
+            display: block;
+        }
+
+        #imageGallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* zachowaj proporcje obrazu */
+            transition: opacity 0.5s ease; /* Add this line */
+            display: none;
+            
+        }
+
+        #prev, #next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: transparent;
+            color: transparent;
+            padding: 20px; /* powiększ padding */
+            font-size: 2em; /* powiększ rozmiar czcionki */
+            cursor: pointer;
+        }
+
+        #prev { left: 400px; } /* umieść na lewej krawędzi obrazu */
+        #next { right: 400px; } /* umieść na prawej krawędzi obrazu */
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 100px;
+            margin-bottom: 220px;
+        }
+
+        .block-link {
+            width: calc(100% /1);
+            height: 200px;
+            margin: 20px; /* Dostosuj marginesy według potrzeb */
+            overflow: hidden;
+            text-decoration: none;
+            
+        }
+
+        .block-link img {
+            width: 100%;
+            height: auto; /* Zachowaj proporcje obrazu */
+            object-fit: cover;
+        }
+
+        /* Opcjonalnie, jeśli chcesz, aby podpisy były wyświetlane pod obrazami */
+        figcaption {
+            text-align: center;
+            text-decoration: none; /* Usunięcie podkreśleń */
+            color: white; /* Ustawienie koloru tekstu na biały */
+        }
+
+        .footer-section {
+            background-color: rgba(59, 58, 58, 0.3);
+            padding: 15px;
+            height: 20%;
+            margin: 10px;
+            line-height: normal;
+            text-align: center;
+            color: #ffffff;
+            margin-top: 50px;
+            display: none;
+        }
+        .footer-section h2 {
+            color: #ffffff;
+        }
+        .footer-section p {
+            color: #ffffff;
+        }
+        #cookieConsent {
+            position: fixed;
+            bottom: 0;
+            width: 50%;
+            background-color:  rgba(59, 58, 58, 0.3);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            z-index: 10000;
+            display: none;
+        }
+    
+}
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="menu-icon" onclick="toggleSideNav()">
+            <i class="fa fa-bars"></i>
+        </div>
+        <div class="top-nav">
+            <img src="nowelogo.png" alt="Logo"> 
+            <a href="tel:+48606670858" class="right kontakt">Kontakt</a>
+            <a href="produkty.html" class="left produkty">Produkty</a>
+            <a href="https://www.facebook.com/profile.php?id=100063770163186" class="fa fa-facebook" target="_blank"></a>
+            <a href="https://www.instagram.com/topsystem.okna/" class="fa fa-instagram" target="_blank"></a>
+
+        </div>
+    </header>
+    <nav class="side-nav">
+        <a href="o_nas.html">O nas</a>
+        <a href="inspiracje.html">Inspiracje</a>
+        <a href="kontakt.html">Kontakt</a>
+        <section id="Map">
+            <iframe id="main-map"
+                width="100%"
+                height="350" 
+                frameborder="0"
+                style="border:0"
+                allowfullscreen
+                src="https://www.google.com/maps/embed/v1/place?q=Okrzei+11,Jelenia+Góra&key=AIzaSyBEyJIWiMvSVHI4zjozEvzet0q3raE56lk"
+            ></iframe>
+        </section>
+    </nav>
+    <div class="carousel">
+        <img src="firma1.jpg" alt="firma 1">
+        <img src="firma2.jpg" alt="firma 2">
+        <img src="firma3.jpg" alt="firma 3">
+        <img src="firma4.jpg" alt="firma 4">
+        <img src="firma5.jpg" alt="firma 5">
+        <img src="firma6.jpg" alt="firma 6">
+        <img src="firma7.jpg" alt="firma 7">
+        <img src="firma8.jpg" alt="firma 8">
+        <img src="firma9.jpg" alt="firma 9">
+        <img src="firma1.jpg" alt="firma 1">
+        <img src="firma2.jpg" alt="firma 1">
+
+    </div>
+    <div class="container">
+        <a href="okna.html" class="block-link">
+            <div class="block">
+                <figure>
+                    <img src="OG1.png" alt="OKNA">
+                    <figcaption>OKNA</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="drzwi.html" class="block-link">
+            <div class="block">
+                <figure>
+                    <img src="OD1.0.png" alt="DRZWI">
+                    <figcaption>DRZWI</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="systemy_tarasowe.html" class="block-link">
+            <div class="block">
+                <figure>
+                    <img src="ST1.0.png" alt="SYSTEMY TARASOWE">
+                    <figcaption>SYSTEMY TARASOWE</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="roleta_markiza.html" class="block-link">
+            <div class="block">
+                <figure>
+                    <img src="OZ1.0.png" alt="ROLETY I MARKIZY">
+                    <figcaption>ROLETY I MARKIZY</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="zaluzje_fasadowe.html" class="block-link">
+            <div class="block">
+                <figure>
+                    <img src="OF1.0.png" alt="ZALUZJE FASADOWE">
+                    <figcaption>ZALUZJE FASADOWE</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="balustrady.html" class="block-link">
+            <div class="block">
+                <figure>
+                    <img src="BAL1.png" alt="BALUSTRADY">
+                    <figcaption>BALUSTRADY</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="bramy.html" class="block-link">
+            <div class="block">
+                <figure>
+                    <img src="BR1.png" alt="BRAMY">
+                    <figcaption>BRAMY</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="ogrodzenia.html" class="block-link">
+            <div class="block">
+                <figure>
+                    <img src="ogrodz.png" alt="OGRODZENIA">
+                    <figcaption>OGRODZENIA</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="automatyka_do_bram.html" class="block-link">
+            <div class="block">
+                <figure>
+                    <img src="AUTO1.png" alt="AUTOMATYKA DO BRAM">
+                    <figcaption>AUTOMATYKA DO BRAM</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="moskitiery.html" class="block-link">
+            <div class="block">
+                <figure>
+                    <img src="MO1.png" alt="MOSKITIERY">
+                    <figcaption>MOSKITIERY</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="szlabany.html" class="block-link">
+            <div class="block">
+                <figure>
+                    <img src="SZ1.png" alt="SZLABANY PARKINGOWE">
+                    <figcaption>SZLABANY PARKINGOWE</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="zabudowy_balkonow.html" class="block-link">
+            <div class="block">
+                <figure>
+                    <img src="ZB1.png" alt="ZABUDOWY BALKONOW I TARASOW">
+                    <figcaption>ZABUDOWY BALKONOW I TARASOW</figcaption>
+                </figure>
+            </div>
+        </a>
+       
+        <a href="przegrody_balkonowe.html" class="block-link">
+            <div class="block">
+                <figure>
+                    <img src="PB1.png" alt="PRZEGRODY BALKONOWE">
+                    <figcaption>PRZEGRODY BALKONOWE</figcaption>
+                </figure>
+            </div>
+        </a>
+      
+        <a href="scianki_dzialowe.html" class="block-link">
+            <div class="block">
+                <figure>
+                    <img src="SD1.png" alt="SZKLANE SCIANKI DZIALOWE">
+                    <figcaption>SZKLANE SCIANKI DZIALOWE</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="pergola.html" class="block-link">
+            <div class="block">
+                <figure>
+                    <img src="pergola.png" alt="PERGOLA">
+                    <figcaption>PERGOLA</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="fasady.html" class="block-link">
+            <div class="block">
+                <figure>
+                    <img src="fasady.png" alt="FASADY">
+                    <figcaption>FASADY/OGRODY ZIMOWE</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="inteligentny_dom.html" class="block-link">
+            <div class="block">
+                <figure>
+                    <img src="ID.png" alt="INTELIGENTNY DOM">
+                    <figcaption>INTELIGENTNY DOM</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="dodatki.html" class="block-link">
+            <div class="block">
+                <figure>
+                    <img src="dodatki.png" alt="DODATKI">
+                    <figcaption>DODATKI</figcaption>
+                </figure>
+            </div>
+        </a>
+        <a href="bramy_wjazdowe.html" class="block-link">
+            <div class="block">
+                <figure>
+                    <img src="bramaw.png" alt=" BRAMY WJAZDOWE">
+                    <figcaption>BRAMY WJAZDOWE</figcaption>
+                </figure>
+            </div>
+        </a>
+    </div>
+    <div class="footer-section">
+        <h2>Dlaczego TopSystem?</h2>
+        <p>-oferujemy solidne i trwałe produkty,</p>
+        <p>-mamy indywidualne podejście do każdego klienta-dostosujemy produkty do Twoich wymagań, zarówno pod względem designu, jak i funkcjonalności,</p>
+        <p>-nasza firma działa na rynku od wielu lat zdobywając zaufanie klientów,</p>
+        <p>-TopSystem dba o swoich klientów również po zakupie, nasza profesjonalna obsługa posprzedażowa jest gotowa pomóc w razie jakichkolwiek problemów!</p>
+    
+    </div>
+
+    <div id="cookieConsent">
+        Ta strona korzysta z plików cookies, aby zapewnić najlepszą jakość usług. <a href="https://developers.google.com/maps/documentation" target="_blank">Dowiedz się więcej</a>.
+        <button id="acceptCookiesButton">Zgadzam się</button>
+    </div>
+
+    <script>
+        function toggleSideNav() {
+            const sideNav = document.querySelector('.side-nav');
+            const iframe = document.querySelector('#main-map iframe');
+
+            sideNav.classList.toggle('active');
+
+            if (sideNav.classList.contains('active')) {
+                // When the side-nav is active, show the main map
+                iframe.style.display = 'block';
+            } else {
+                // When the side-nav is not active, hide the main map
+                iframe.style.display = 'none';
+            }
+        }
+    </script>
+
+    <script>
+        function initMap() {
+            if (!document.getElementById('map-initialized')) {
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: { lat: -34.397, lng: 150.644 },
+                    zoom: 8
+                });
+                document.getElementById('map').style.display = 'block';
+                document.getElementById('map').setAttribute('id', 'map-initialized');
+            }
+        }
+    </script>
+
+    <script>
+        window.onload = function() {
+          var images = document.querySelectorAll('#imageGallery img');
+          var currentIndex = 0;
+        
+          document.getElementById('prev').onclick = function() {
+            images[currentIndex].style.display = 'none';
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            images[currentIndex].style.display = 'block';
+          };
+        
+          document.getElementById('next').onclick = function() {
+            images[currentIndex].style.display = 'none';
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].style.display = 'block';
+          };
+        };
+        </script>
+
+        </head>
+        <body>
+        
+        <div id="imageGallery">
+          <img src="main1.JPG" alt="main1">
+          <img src="main2.JPG" alt="main2" style="display: none;">
+          <img src="main3.JPG" alt="main3" style="display: none;">
+          <img src="main4.JPG" alt="main4" style="display: none;">
+          
+    </div>
+        <div id="prev">&lt;</div>
+        <div id="next">&gt;</div>
+
+    </script>
+        
+    <script>
+        const gallery = document.getElementById('imageGallery');
+const images = gallery.querySelectorAll('img');
+let currentIndex = 0;
+
+function scrollGallery() {
+  images[currentIndex].style.display = 'none';
+  currentIndex = (currentIndex + 1) % images.length;
+  images[currentIndex].style.display = 'block';
+}
+
+setInterval(scrollGallery, 2000); 
+    </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const consentPopup = document.getElementById('cookieConsent');
+        const acceptBtn = document.getElementById('acceptCookiesButton');
+
+        let consentValue = localStorage.getItem('cookieConsent');
+
+        if (!consentValue) {
+            consentPopup.style.display = 'block';
+        }
+
+        acceptBtn.onclick = function(){
+            localStorage.setItem('cookieConsent', 'true');
+            consentPopup.style.display = 'none';
+        }
+    });
+</script>
+<script>
+
+const express = require('express');
+const helmet = require('helmet');
+const cookieParser = require('cookie-parser');
+const csurf = require('csurf');
+
+const app = express();
+
+app.use(helmet());
+
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "https://maps.googleapis.com"],
+      imgSrc: ["'self'", "data:", "https://maps.googleapis.com"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      connectSrc: ["'self'", "https://maps.googleapis.com"],
+    },
+  })
+);
+
+
+app.use(cookieParser());
+
+
+app.use(csurf({ cookie: true }));
+
+
+app.use((err, req, res, next) => {
+  if (err.code !== 'EBADCSRFTOKEN') return next(err);
+  res.status(403);
+  res.send('Formularz jest nieprawidłowy lub wygasł.');
+});
+</script>
+
+
+</body>
+
+</html>
+
+
+
+
+

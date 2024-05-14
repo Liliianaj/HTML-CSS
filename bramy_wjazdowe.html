@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            background-color: rgb(255, 255, 255);
+            font-family: 'Roboto-Light.ttf', sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 120vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: rgba(59, 58, 58, 0.3);
+            padding: 0px 25px;
+            position: fixed;
+            float: right;
+            top: 0;
+            width: 100%;
+            z-index: 3;
+            flex-grow: 0;
+            color: white;
+            display: flex;
+            height: 9%;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            
+
+        }
+
+        .top-nav a {
+            color: white;
+            text-decoration: none;
+            justify-content: center;
+            text-align: center;
+            margin-right:50px;
+            margin-left: 20px;
+            font-size: 1em;
+            padding: 0px;
+        }
+        
+
+        .top-nav img {
+            max-width: 215px;
+            margin: 10px;
+            display: block;
+            margin-top: -58px;
+            position: absolute;
+            left: 47%;
+            transform: translateX(-50%);
+        }
+        
+
+        .fa-facebook {
+            position:absolute;
+            right: 120px;
+            margin-top: 24px;
+        }
+        .fa-instagram{
+            position:absolute;
+            right: 140px;
+            margin-top: 24px; 
+        }
+        .kontakt {
+            position: absolute;
+            right: 40px;
+            margin-top: 25px;
+        }
+
+        .index {
+            position: absolute;
+            left: 40px;
+            margin-top: 25px;
+        }
+
+
+        .side-nav {
+            position: relative;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 80%;
+            background-color: rgba(59, 58, 58, 0.3);
+            transition: left 0.3s;
+            z-index: 2;
+            align-items: flex-end;
+            flex-direction: column-reverse;
+            display: block;
+            flex-direction: left;
+            color: #ffffff;
+            text-align: left;
+            padding: 60px 0;
+            padding-top: -40px;
+            margin-top: 20px;
+            text-decoration: none; 
+            text-underline-position: none;
+            text-decoration-thickness: 0;
+            text-decoration-color: #ffffff;
+            width: 15%;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        .side-nav.active {
+            left: 0;
+        }
+
+        .side-nav a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .side-nav a:hover {
+            background-color: rgba(59, 58, 58, 0.3);
+        }
+
+        #map {
+            height: 250px;
+            width: 100%;
+            display: none;
+        }
+
+        .menu-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .carousel {
+            display: flex;
+            overflow: hidden;
+            width: 40%;
+            height: 50px;
+            position: fixed;
+            bottom: 0;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: auto;
+            animation: carousel 18s infinite linear;
+        }
+        
+        @keyframes carousel {
+            0% { transform: translateX(0); }
+            11% { transform: translateX(-100%); }
+            22% { transform: translateX(-200%); }
+            33% { transform: translateX(-300%); }
+            44% { transform: translateX(-400%); }
+            55% { transform: translateX(-500%); }
+            66% { transform: translateX(-600%); }
+            77% { transform: translateX(-700%); }
+            88% { transform: translateX(-800%); }
+            100% { transform: translateX(-900%); }
+        }
+       
+
+        .image-container img {
+            max-width: 60%;
+            position: center;
+            margin-top: -500px;
+            margin-bottom: 500px;
+            margin-left: 300px;
+        }
+    
+        @media screen and (max-width: 600px) {
+            body {
+            background-color: white;
+            font-family: 'Roboto-Light.ttf', sans-serif;
+            color: black;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 120vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: rgba(59, 58, 58, 0.3);
+            padding: 0px 25px;
+            position: fixed;
+            float: right;
+            top: 0;
+            width: 90%;
+            z-index: 3;
+            flex-grow: 0;
+            color: rgb(255, 255, 255);
+            display: flex;
+            height: 9%;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            
+
+        }
+
+        .top-nav a {
+            color: white;
+            text-decoration: none;
+            justify-content: center;
+            text-align: center;
+            margin-right:50px;
+            margin-left: 20px;
+            font-size: 1em;
+            padding: 0px;
+        }
+        
+
+        .top-nav img {
+            max-width: 215px;
+            margin: 10px;
+            display: block;
+            margin-top: -60px;
+            position: absolute;
+            left: 47%;
+            transform: translateX(-50%);
+        }
+        
+
+        .fa-facebook {
+            position:absolute;
+            right: 30px;
+            margin-top: 24px;
+            display: none;
+        }
+        .fa-instagram{
+            position:absolute;
+            right: 5px;
+            margin-top: 24px; 
+            display: none;
+        }
+
+        .kontakt {
+            position: absolute;
+            right: 16px;
+            margin-top: 25px;
+            display: none;
+        }
+
+
+        .index {
+            position: absolute;
+            left: 250px;
+            margin-top: 16px;
+            
+        }
+
+
+        .side-nav {
+            position: fixed;
+            top: 0;
+            left: -100px;
+            width: 500px;
+            height: 80%;
+            background-color: rgba(59, 58, 58, 0.3);
+            transition: left 0.3s;
+            z-index: 2;
+            align-items: flex-end;
+            flex-direction: column-reverse;
+            display: block;
+            flex-direction: left;
+            color: #ffffff;
+            text-align: left;
+            padding: 60px 0;
+            padding-top: -40px;
+            margin-top: 20px;
+            text-decoration: none;
+            text-underline-position: none;
+            text-decoration-thickness: 0;
+            text-decoration-color: #ffffff;
+            width: 24%;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        .side-nav.active {
+            left: 0;
+        }
+
+        .side-nav a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .side-nav a:hover {
+            background-color: rgba(59, 58, 58, 0.3);
+        }
+
+        #map {
+            height: 250px;
+            width: 100%;
+            display: none;
+        }
+
+        .menu-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .carousel {
+            display: none;
+            overflow: hidden;
+            width: 40%;
+            height: 50px;
+            position: fixed;
+            bottom: 0;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: auto;
+            animation: carousel 18s infinite linear;
+        }
+
+        @keyframes carousel {
+            0% { transform: translateX(0); }
+            11% { transform: translateX(-100%); }
+            22% { transform: translateX(-200%); }
+            33% { transform: translateX(-300%); }
+            44% { transform: translateX(-400%); }
+            55% { transform: translateX(-500%); }
+            66% { transform: translateX(-600%); }
+            77% { transform: translateX(-700%); }
+            88% { transform: translateX(-800%); }
+            100% { transform: translateX(-900%); }
+        }
+        .image-container img {
+            max-width: 90%;
+            position: center;
+            margin-top: 100px;
+            margin-bottom: 100px;
+            margin-left: 20px;
+        }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="menu-icon" onclick="toggleSideNav()">
+            <i class="fa fa-bars"></i>
+        </div>
+        <div class="top-nav">
+            <img src="nowelogo.png" alt="Logo">
+            <a href="tel:+48606670858" class="right kontakt">Kontakt</a>
+            <a href="index.html" class="left index">Strona główna</a>
+            <a href="https://www.facebook.com/profile.php?id=100063770163186" class="fa fa-facebook" target="_blank"></a>
+            <a href="https://www.instagram.com/topsystem.okna/" class="fa fa-instagram" target="_blank"></a>
+
+        </div>
+    </header>
+    <nav class="side-nav">
+        <a href="o_nas.html">O nas</a>
+        <a href="inspiracje.html">Inspiracje</a>
+        <a href="kontakt.html">Kontakt</a>
+        <section id="Map">
+            <iframe id="main-map"
+                width="100%"
+                height="350" 
+                frameborder="0"
+                style="border:0"
+                allowfullscreen
+                src="https://www.google.com/maps/embed/v1/place?q=Okrzei+11,Jelenia+Góra&key=AIzaSyBEyJIWiMvSVHI4zjozEvzet0q3raE56lk"
+            ></iframe>
+        </section>
+    </nav>
+    <div class="carousel">
+        <img src="firma1.jpg" alt="firma 1">
+        <img src="firma2.jpg" alt="firma 2">
+        <img src="firma3.jpg" alt="firma 3">
+        <img src="firma4.jpg" alt="firma 4">
+        <img src="firma5.jpg" alt="firma 5">
+        <img src="firma6.jpg" alt="firma 6">
+        <img src="firma7.jpg" alt="firma 7">
+        <img src="firma8.jpg" alt="firma 8">
+        <img src="firma9.jpg" alt="firma 9">
+        <img src="firma1.jpg" alt="firma 1">
+        <img src="firma2.jpg" alt="firma 1">
+
+    </div>
+
+    <div>
+   
+      
+     <div class="image-container">
+            <img src="przesuwna1.png" alt="przesuwna1">
+            <img src="przesuwna2.png" alt="przesuwna2">
+            <img src="przesuwna3.png" alt="przesuwna3">
+            <img src="przesuwna4.png" alt="przesuwna4">
+            <img src="przesuwna5.png" alt="przesuwna5">
+            <img src="przesuwna6.png" alt="przesuwna6">
+            <img src="przesuwna7.png" alt="przesuwna7">
+            <img src="przesuwna8.png" alt="przesuwna8">
+            <img src="przesuwna9.png" alt="przesuwna9">
+            <img src="przesuwna10.png" alt="przesuwna10">
+            <img src="przesuwna11.png" alt="przesuwna11">
+            <img src="przesuwna12.png" alt="przesuwna12">
+            <img src="przesuwna13.png" alt="przesuwna13">
+            <img src="przesuwna14.png" alt="przesuwna14">
+            <img src="przesuwna15.png" alt="przesuwna15">
+            <img src="przesuwna16.png" alt="przesuwna16">
+            <img src="przesuwna17.png" alt="przesuwna17">
+            <img src="przesuwna18.png" alt="przesuwna18">
+            <img src="przesuwna19.png" alt="przesuwna19">
+            <img src="przesuwna20.png" alt="przesuwna20">
+            <img src="przesuwna21.png" alt="przesuwna21">
+            <img src="przesuwna22.png" alt="przesuwna22">
+            <img src="przesuwna23.png" alt="przesuwna23">
+            <img src="przesuwna24.png" alt="przesuwna24">
+            <img src="przesuwna25.png" alt="przesuwna25">
+            <img src="przesuwna26.png" alt="przesuwna26">
+            <img src="przesuwna27.png" alt="przesuwna27">
+            <img src="przesuwna28.png" alt="przesuwna28">
+            <img src="przesuwna29.png" alt="przesuwna29">
+            <img src="przesuwna30.png" alt="przesuwna30">
+            <img src="przesuwna31.png" alt="przesuwna31">
+            <img src="przesuwna32.png" alt="przesuwna32">
+            <img src="przesuwna33.png" alt="przesuwna33">
+            <img src="przesuwna37.png" alt="przesuwna37">
+            <img src="przesuwna38.png" alt="przesuwna38">
+            <img src="przesuwna39.png" alt="przesuwna39">
+            <img src="przesuwna40.png" alt="przesuwna40">
+            <img src="przesuwna41.png" alt="przesuwna41">
+            <img src="przesuwna42.png" alt="przesuwna42">
+            <img src="przesuwna43.png" alt="przesuwna43">
+            <img src="przesuwna44.png" alt="przesuwna44">
+            <img src="przesuwna45.png" alt="przesuwna45">
+            <img src="przesuwna46.png" alt="przesuwna46">
+            <img src="przesuwna49.png" alt="przesuwna49">
+            <img src="przesuwna50.png" alt="przesuwna50">
+            <img src="przesuwna51.png" alt="przesuwna51">
+            <img src="przesuwna52.png" alt="przesuwna52">
+            <img src="przesuwna53.png" alt="przesuwna53">
+            <img src="przesuwna54.png" alt="przesuwna54">
+            <img src="przesuwna55.png" alt="przesuwna55">
+            <img src="przesuwna56.png" alt="przesuwna56">
+            <img src="przesuwna57.png" alt="przesuwna57">
+            <img src="przesuwna58.png" alt="przesuwna58">
+            <img src="przesuwna59.png" alt="przesuwna59">
+            <img src="przesuwna60.png" alt="przesuwna60">
+            <img src="przesuwna61.png" alt="przesuwna61">
+            <img src="przesuwna62.png" alt="przesuwna62">
+            <img src="przesuwna63.png" alt="przesuwna63">
+            <img src="przesuwna64.png" alt="przesuwna64">
+            <img src="przesuwna65.png" alt="przesuwna65">
+            <img src="przesuwna66.png" alt="przesuwna66">
+            <img src="przesuwna67.png" alt="przesuwna67">
+            <img src="przesuwna68.png" alt="przesuwna68">
+            <img src="przesuwna69.png" alt="przesuwna69">
+            <img src="przesuwna70.png" alt="przesuwna70">
+            <img src="przesuwna71.png" alt="przesuwna71">
+            <img src="przesuwna72.png" alt="przesuwna72">
+            <img src="przesuwna73.png" alt="przesuwna73">
+            <img src="przesuwna74.png" alt="przesuwna74">
+            <img src="przesuwna75.png" alt="przesuwna75">
+            <img src="przesuwna76.png" alt="przesuwna76">
+            <img src="przesuwna77.png" alt="przesuwna77">
+            <img src="przesuwna78.png" alt="przesuwna78">
+            <img src="przesuwna79.png" alt="przesuwna79">
+            <img src="przesuwna80.png" alt="przesuwna80">
+            <img src="przesuwna81.png" alt="przesuwna81">
+            <img src="dwu1.png" alt="dwu1">
+            <img src="dwu2.png" alt="dwu2">
+            <img src="dwu3.png" alt="dwu3">
+            <img src="dwu4.png" alt="dwu4">
+            <img src="dwu5.png" alt="dwu5">
+            <img src="dwu6.png" alt="dwu6">
+            <img src="dwu7.png" alt="dwu7">
+            <img src="dwu8.png" alt="dwu8">
+            <img src="dwu10.png" alt="dwu10">
+            <img src="dwu11.png" alt="dwu11">
+            <img src="dwu12.png" alt="dwu12">
+            <img src="dwu13.png" alt="dwu14">
+            <img src="dwu15.png" alt="dwu15">
+            <img src="dwu16.png" alt="dwu16">
+            <img src="dwu17.png" alt="dwu17">
+            <img src="dwu18.png" alt="dwu18">
+            <img src="dwu19.png" alt="dwu19">
+            <img src="dwu20.png" alt="dwu20">
+            <img src="dwu21.png" alt="dwu21">
+            <img src="dwu22.png" alt="dwu22">
+            <img src="dwu23.png" alt="dwu23">
+            <img src="dwu24.png" alt="dwu24">
+            <img src="dwu25.png" alt="dwu25">
+            <img src="dwu26.png" alt="dwu26">
+            <img src="dwu27.png" alt="dwu27">
+            <img src="dwu28.png" alt="dwu28">
+            <img src="dwu29.png" alt="dwu29">
+            <img src="dwu30.png" alt="dwu30">
+            <img src="dwu31.png" alt="dwu31">
+            <img src="dwu32.png" alt="dwu32">
+            <img src="dwu33.png" alt="dwu33">
+            <img src="dwu34.png" alt="dwu34">
+            <img src="dwu35.png" alt="dwu35">
+            <img src="dwu36.png" alt="dwu36">
+            <img src="dwu37.png" alt="dwu37">
+            <img src="dwu38.png" alt="dwu38">
+            <img src="dwu39.png" alt="dwu39">
+            <img src="dwu40.png" alt="dwu40">
+            <img src="dwu41.png" alt="dwu41">
+            <img src="dwu42.png" alt="dwu42">
+            <img src="dwu43.png" alt="dwu43">
+            <img src="dwu44.png" alt="dwu44">
+            <img src="dwu45.png" alt="dwu45">
+            <img src="dwu46.png" alt="dwu46">
+        </div>
+     
+      
+       
+           
+    <script>
+        function toggleSideNav() {
+            const sideNav = document.querySelector('.side-nav');
+            const iframe = document.querySelector('#main-map iframe');
+
+            sideNav.classList.toggle('active');
+
+            if (sideNav.classList.contains('active')) {
+            
+                iframe.style.display = 'block';
+            } else {
+    
+                iframe.style.display = 'none';
+            }
+        }
+    </script>
+
+    <script>
+        function initMap() {
+            if (!document.getElementById('map-initialized')) {
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    center: { lat: -34.397, lng: 150.644 },
+                    zoom: 8
+                });
+                document.getElementById('map').style.display = 'block';
+                document.getElementById('map').setAttribute('id', 'map-initialized');
+            }
+        }
+    </script>
+        
+
+
+</body>
+
+</html>

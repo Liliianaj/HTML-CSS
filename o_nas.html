@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            background-color: black;
+            font-family: 'Roboto-Light.ttf', sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 120vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: rgba(59, 58, 58, 0.3);
+            padding: 0px 25px;
+            position: fixed;
+            float: right;
+            top: 0;
+            width: 100%;
+            z-index: 3;
+            flex-grow: 0;
+            color: white;
+            display: flex;
+            height: 9%;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            width: 100%; 
+            
+
+        }
+
+        .top-nav a {
+            color: white;
+            text-decoration: none; 
+            justify-content: center;
+            text-align: center;
+            margin-right:50px;
+            margin-left: 20px;
+            font-size: 1em;
+            padding: 0px;
+        }
+        
+
+        .top-nav img {
+            max-width: 215px; 
+            margin: 10px; 
+            display: block; 
+            margin-top: -58px;
+            position: absolute;
+            left: 47%;
+            transform: translateX(-50%);
+        }
+        
+
+        .fa-facebook {
+            position:absolute;
+            right: 120px;
+            margin-top: 24px;
+        }
+        .fa-instagram{
+            position:absolute;
+            right: 140px;
+            margin-top: 24px; 
+        }
+       
+        .kontakt {
+            position: absolute;
+            right: 40px;
+            margin-top: 25px;
+        }
+
+        .porady {
+            position: absolute;
+            right: -50px;
+            margin-top: 70px; 
+            color: transparent;
+        }
+       
+        .index {
+            position: absolute;
+            left: 40px;
+            margin-top: 25px;
+        }
+
+
+        .side-nav {
+            position: relative;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 80%;
+            background-color: rgba(59, 58, 58, 0.3);
+            transition: left 0.3s;
+            z-index: 2;
+            align-items: flex-end;
+            flex-direction: column-reverse;
+            display: block;
+            flex-direction: left;
+            color: #ffffff;
+            text-align: left;
+            padding: 60px 0;
+            padding-top: -40px;
+            margin-top: 20px;
+            text-decoration: none; 
+            text-underline-position: none; 
+            text-decoration-thickness: 0; 
+            text-decoration-color: #ffffff; 
+            width: 15%;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        .side-nav.active {
+            left: 0;
+        }
+
+        .side-nav a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .side-nav a:hover {
+            background-color: rgba(59, 58, 58, 0.3);
+        }
+
+        .menu-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .carousel {
+            display: flex;
+            overflow: hidden;
+            width: 40%;
+            height: 50px;
+            position: fixed;
+            bottom: 0;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: auto;
+            animation: carousel 18s infinite linear;
+        }
+
+        @keyframes carousel {
+            0% { transform: translateX(0); }
+            11% { transform: translateX(-100%); }
+            22% { transform: translateX(-200%); }
+            33% { transform: translateX(-300%); }
+            44% { transform: translateX(-400%); }
+            55% { transform: translateX(-500%); }
+            66% { transform: translateX(-600%); }
+            77% { transform: translateX(-700%); }
+            88% { transform: translateX(-800%); }
+            100% { transform: translateX(-900%); }
+        }
+        
+        section {
+            background-color: rgba(68, 68, 68, 0.5);
+            width: 70%;
+            margin: 0 auto; 
+            padding: 20px; 
+            border: 1px solid  rgba(68, 68, 68, 0.5); 
+            border-radius: 10px; 
+            margin-top: -500px; 
+            line-height: 2;
+        }
+        @media screen and (max-width: 600px)  {
+            body {
+            background-color: black;
+            font-family: 'Roboto-Light.ttf', sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 120vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: rgba(59, 58, 58, 0.3);
+            padding: 0px 25px;
+            position: fixed;
+            float: right;
+            top: 0;
+            width: 90%;
+            z-index: 3;
+            flex-grow: 0;
+            color: white;
+            display: flex;
+            height: 9%;
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            
+
+        }
+
+        .top-nav a {
+            color: white;
+            text-decoration: none;
+            justify-content: center;
+            text-align: center;
+            margin-right:50px;
+            margin-left: 20px;
+            font-size: 1em;
+            padding: 0px;
+        }
+        
+
+        .top-nav img {
+            max-width: 215px;
+            margin: 10px; 
+            display: block; 
+            margin-top: -54px;
+            position: absolute;
+            left: 47%;
+            transform: translateX(-50%);
+        }
+        
+
+        .fa-facebook {
+            position:absolute;
+            right: 30px;
+            margin-top: 24px;
+        }
+        .fa-instagram{
+            position:absolute;
+            right: 5px;
+            margin-top: 24px; 
+        }
+       
+        .kontakt {
+            position: absolute;
+            right: 16px;
+            margin-top: 25px;
+            display: none;
+        }
+
+
+        .index {
+            position: absolute;
+            left: 40px;
+            margin-top: 25px;
+            display: none;
+        }
+
+
+        .side-nav {
+            position: fixed;
+            top: 0;
+            left: -100px;
+            width: 500px;
+            height: 80%;
+            background-color: rgba(59, 58, 58, 0.3);
+            transition: left 0.3s;
+            z-index: 2;
+            align-items: flex-end;
+            flex-direction: column-reverse;
+            display: block;
+            flex-direction: left;
+            color: #ffffff;
+            text-align: left;
+            padding: 60px 0;
+            padding-top: -40px;
+            margin-top: 20px;
+            text-decoration: none;
+            text-underline-position: none;
+            text-decoration-thickness: 0;
+            text-decoration-color: #ffffff;
+            width: 23%;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        .side-nav.active {
+            left: 0;
+        }
+
+        .side-nav a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .side-nav a:hover {
+            background-color: rgba(59, 58, 58, 0.3);
+        }
+
+        #map {
+            height: 250px;
+            width: 100%;
+            display: none;
+        }
+
+        .menu-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .carousel {
+            display: none;
+            overflow: hidden;
+            width: 40%;
+            height: 50px;
+            position: fixed;
+            bottom: 0;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: auto;
+            animation: carousel 18s infinite linear;
+        }
+
+        @keyframes carousel {
+            0% { transform: translateX(0); }
+            11% { transform: translateX(-100%); }
+            22% { transform: translateX(-200%); }
+            33% { transform: translateX(-300%); }
+            44% { transform: translateX(-400%); }
+            55% { transform: translateX(-500%); }
+            66% { transform: translateX(-600%); }
+            77% { transform: translateX(-700%); }
+            88% { transform: translateX(-800%); }
+            100% { transform: translateX(-900%); }
+        }
+        section {
+            background-color: rgba(68, 68, 68, 0.5);
+            width: 70%;
+            margin: 0 auto; 
+            padding: 20px; 
+            border: 1px solid  rgba(68, 68, 68, 0.5); 
+            border-radius: 10px; 
+            margin-top: 100px; 
+            line-height: 2;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+        }   
+
+        .porady {
+            position: absolute;
+            right: -50px;
+            margin-top: 70px; 
+            color: transparent;
+            display: none;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="menu-icon" onclick="toggleSideNav()">
+            <i class="fa fa-bars"></i>
+        </div>
+        <div class="top-nav">
+            <img src="nowelogo.png" alt="Logo">
+            <a href="tel:+48606670858" class="right kontakt">Kontakt</a>
+            <a href="index.html" class="left index">Strona główna </a>
+            <a href="https://www.facebook.com/profile.php?id=100063770163186" class="fa fa-facebook" target="_blank"></a>
+            <a href="https://www.instagram.com/topsystem.okna/" class="fa fa-instagram" target="_blank"></a>
+            <a href="porady.html">.</a>
+
+        </div>
+    </header>
+    <nav class="side-nav">
+        <a href="index.html">Strona główna</a>
+        <a href="inspiracje.html">Inspiracje</a>
+        <a href="kontakt.html">Kontakt</a>
+
+    </nav>
+    <div class="carousel">
+        <img src="firma1.jpg" alt="firma 1">
+        <img src="firma2.jpg" alt="firma 2">
+        <img src="firma3.jpg" alt="firma 3">
+        <img src="firma4.jpg" alt="firma 4">
+        <img src="firma5.jpg" alt="firma 5">
+        <img src="firma6.jpg" alt="firma 6">
+        <img src="firma7.jpg" alt="firma 7">
+        <img src="firma8.jpg" alt="firma 8">
+        <img src="firma9.jpg" alt="firma 9">
+        <img src="firma1.jpg" alt="firma 1">
+        <img src="firma2.jpg" alt="firma 1">
+
+    </div>
+
+    <section>
+        <p>
+        Top System istnieje na rynku od 1999 roku. Wcześniej pod nazwą Trak-Bud firma specjalizowała się w produkcji i obróbce drewna (więźby dachowe, schody, okna,drzwi.)
+        Proponujemy Państwu najwyższej klasy okna, drzwi, bramy, rolety, ogrodzenia i markizy od najlepszych w swojej branży producentów.
+        Top System oferuje sprzedaż produktów jak i montaż przez wykwalifikowane ekipy montażowe. 
+        Zapraszamy do naszego salonu sprzedaży w Jeleniej Górze, gdzie otrzymają Państwo fachową obsługę oraz doradztwo. 
+        Prowadzimy działalność również na terenie Niemiec i Austrii, Holandii oraz Belgii. 
+        Wieloletnie doświadczenie,najwyższa jakość produktów jak i oferowanych przez nas usług pozwoliły nam zyskać wielu zadowolonych Klientów, dzięki którym coraz bardziej umacniamy naszą pozycję na rynku, oraz kształtujemy odpowiedni wizerunek naszej firmy. 
+        Wychodząc na przeciw Państwa oczekiwaniom firma Top System wykonuje montaże trójwarstwowe stolarki okiennej jak również w warstwie ocieplenia.
+        Zapraszamy do współpracy.
+        </p>
+    </section>
+
+    <script>
+        function toggleSideNav() {
+            const sideNav = document.querySelector('.side-nav');
+            const iframe = document.querySelector('#main-map iframe');
+
+            sideNav.classList.toggle('active');
+
+            if (sideNav.classList.contains('active')) {
+             
+                iframe.style.display = 'block';
+            } else {
+                
+                iframe.style.display = 'none';
+            }
+        }
+    </script>
+  
+</html>
